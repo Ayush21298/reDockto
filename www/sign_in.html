@@ -67,22 +67,14 @@
         </div><!-- /footer -->
 
         <div class="main_content">
-            <div class="profile_container">
-                <div class="profile_image_container">
-                    <img src="img/profile.png">
+            <div class="sign_in_container">
+                <div class="sign_in_form">
+                    <input type="text" name="phone_in" id="phone_in" placeholder="Phone No. : 9999999999" class="sign_in_input">
+                    <input type="password" name="password_in" id="password_in" placeholder="Password" class="sign_in_input">
                 </div>
-                <div class="profile_information">
-                    <input type="text" name="name" id="name" placeholder="Full Name" class="profile_input">
-                    <input type="text" name="phone" id="phone" placeholder="Phone No. : 9999999999" class="wallet_input" disabled="">
-                    <input type="email" name="email" id="email" placeholder="Email : abc@xyz.com" class="profile_input">
-                    <input type="text" name="date_of_birth" id="date_of_birth" placeholder="DOB : DD/MM/YYYY" class="profile_input">
-                    <input type="text" name="profession" id="profession" placeholder="Profession : Student" class="profile_input">
-                    <input type="text" name="wallet" id="wallet" placeholder="Wallet Balance : &#8377; 0.00" class="wallet_input" disabled="">
-                    <div class="profile_btn save_profile_button">Save Profile</div>
-                    <div class="profile_btn recharge_button">Recharge Wallet</div>
-                    <div class="profile_btn edit_profile_button">Edit Profile</div>
-                    <div class="profile_btn sign_out_button"><a href="home.html">Sign Out</a></div>
-                </div>
+                <div class="profile_btn sign_in_button">Sign In</div>
+                <center><p>OR</p></center>
+                <div class="profile_btn register_button">Register</div>
             </div>
         </div>
         
@@ -91,31 +83,28 @@
 
     <script type="text/javascript">
         function reload(){
-            if(getCookie("phone_no") == "") {
-                window.location = 'sign_in.html';
-            } else {
-                $("#phone").val("Phone No. : "+getCookie("phone_no"));
+            if(getCookie("phone_no") != "") {
+                window.location = 'profile.html';
             }
         }
 
         $(document).ready(function() {
-            $(".profile_input").prop('disabled',true);
-            // alert(document.cookie);
-            // setCookie("phone_no", "9999999999", 30);
-            // alert(document.cookie);
-            reload();
+
         });
-        $(".edit_profile_button").click(function() {
-            $(".profile_btn").toggle();
-            $(".profile_input").prop('disabled',false);
+        $(".sign_in_button").click(function() {
+            var temp_phone = $("#phone_in").val();
+            var temp_pass = $("#password_in").val();
+
+            if(temp_phone == temp_pass){
+                setCookie("phone_no", temp_phone, 30);
+                reload();    
+            } else {
+                alert("Invalid Credentials");
+            }
+            
         });
-        $(".save_profile_button").click(function() {
-            $(".profile_btn").toggle();
-            $(".profile_input").prop('disabled',true);
-        });
-        $(".sign_out_button").click(function() {
-            setCookie("phone_no", "", 30);
-            reload();
+        $(".register_button").click(function() {
+            window.location = 'register.html';
         });
     </script>
 

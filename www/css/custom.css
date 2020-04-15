@@ -112,6 +112,15 @@
 	box-shadow: grey 2px 2px 2px 2px;
 }
 
+.otp_container {
+	width: 96vw;
+	min-height: 90vh;
+	overflow-y: scroll;
+	margin: 2vw;
+	box-shadow: grey 2px 2px 2px 2px;
+	display: none;
+}
+
 .profile_image_container {
 	box-shadow: grey 2px 2px 2px 2px;
 }
@@ -162,6 +171,10 @@
 }
 
 .register_button {
+	background-color: #56a;
+}
+
+.otp_in_button {
 	background-color: #56a;
 }
 
