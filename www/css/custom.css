@@ -104,6 +104,14 @@
 	box-shadow: grey 2px 2px 2px 2px;
 }
 
+.sign_in_container {
+	width: 96vw;
+	min-height: 90vh;
+	overflow-y: scroll;
+	margin: 2vw;
+	box-shadow: grey 2px 2px 2px 2px;
+}
+
 .profile_image_container {
 	box-shadow: grey 2px 2px 2px 2px;
 }
@@ -147,4 +155,29 @@
 
 .sign_out_button {
 	background-color: #f56;
+}
+
+.sign_in_button {
+	background-color: #5a6;
+}
+
+.register_button {
+	background-color: #56a;
+}
+
+.sign_in_form {
+	box-shadow: grey 2px 2px 2px 2px;
+	width: 80vw;
+	margin: 7.5vw;
+	padding: 2rem;
+}
+
+.sign_in_input {
+	box-shadow: grey 2px 2px 2px 2px;
+	/*display: inline-block;*/
+	text-align: center;
+	margin: 2rem;
+	padding: 1rem;
+	/*color: #fff;*/
+	font-size: 2rem;
 }
