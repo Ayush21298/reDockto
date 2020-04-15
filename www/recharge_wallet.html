@@ -67,22 +67,17 @@
         </div><!-- /footer -->
 
         <div class="main_content">
-            <div class="profile_container">
-                <div class="profile_image_container">
-                    <img src="img/profile.png">
+            <div class="sign_in_container">
+                <div class="sign_in_form">
+                    <input type="text" name="recharge_amt_in" id="recharge_amt_in" placeholder="Recharge Amount : 100.00" class="sign_in_input">
                 </div>
-                <div class="profile_information">
-                    <input type="text" name="name" id="name" placeholder="Full Name" class="profile_input">
-                    <input type="text" name="phone_no" id="phone_no" placeholder="Phone No. : 9999999999" class="wallet_input" disabled="">
-                    <input type="email" name="email" id="email" placeholder="Email : abc@xyz.com" class="profile_input">
-                    <input type="text" name="dob" id="dob" placeholder="DOB : DD/MM/YYYY" class="profile_input">
-                    <input type="text" name="profession" id="profession" placeholder="Profession : Student" class="profile_input">
-                    <input type="text" name="wallet" id="wallet" placeholder="Wallet Balance : &#8377; 0.00" class="wallet_input" disabled="">
-                    <div class="profile_btn save_profile_button">Save Profile</div>
-                    <div class="profile_btn recharge_button">Recharge Wallet</div>
-                    <div class="profile_btn edit_profile_button">Edit Profile</div>
-                    <div class="profile_btn sign_out_button"><a href="home.html">Sign Out</a></div>
+                <div class="profile_btn recharge_in_button">Recharge Wallet</div>
+            </div>
+            <div class="otp_container">
+                <div class="sign_in_form">
+                    <input type="password" name="otp_recharge" id="otp_recharge" placeholder="OTP" class="sign_in_input">
                 </div>
+                <div class="profile_btn otp_recharge_button">Verify OTP</div>
             </div>
         </div>
         
@@ -93,37 +88,40 @@
         function reload(){
             if(getCookie("phone_no") == "") {
                 window.location = 'sign_in.html';
-            } else {
-                $("#phone_no").val("Phone No. : "+getCookie("phone_no"));
-                $("#name").val("Full Name : "+getCookie("name"));
-                $("#email").val("Email : "+getCookie("email"));
-                $("#dob").val("DOB : "+getCookie("dob"));
-                $("#profession").val("Profession : "+getCookie("profession"));
-                $("#wallet").val("Wallet Balance : ₹ "+getCookie("wallet"));
             }
         }
 
         $(document).ready(function() {
-            $(".profile_input").prop('disabled',true);
-            // alert(document.cookie);
-            // setCookie("phone_no", "9999999999", 30);
-            // alert(document.cookie);
-            reload();
+
         });
-        $(".edit_profile_button").click(function() {
-            $(".profile_btn").toggle();
-            $(".profile_input").prop('disabled',false);
+        $(".recharge_in_button").click(function() {
+            var temp_amt = parseFloat($("#recharge_amt_in").val());
+
+            if( temp_amt > 0.0 ){
+                $(".sign_in_container").hide();
+                $(".otp_container").show();
+            } else {
+                alert("Invalid Recharge Amount");
+                $("#recharge_amt_in").val("");
+            }
+            
         });
-        $(".save_profile_button").click(function() {
-            $(".profile_btn").toggle();
-            $(".profile_input").prop('disabled',true);
+        $(".otp_recharge_button").click(function() {
+            var temp_amt = parseFloat($("#recharge_amt_in").val());
+            
+            var temp_otp = $("#otp_recharge").val();
+
+            if(temp_otp == "0000"){
+                alert("Recharge Successfull");
+                setCookie("wallet", (parseFloat(getCookie("wallet")) + temp_amt).toString(), 30);
+                window.location = 'profile.html';
+            } else {
+                alert("Wrong OTP");
+            }
+            
         });
-        $(".recharge_button").click(function() {
-            window.location = 'recharge_wallet.html';
-        });
-        $(".sign_out_button").click(function() {
-            setCookie("phone_no", "", 30);
-            reload();
+        $(".sign_in_button").click(function() {
+            window.location = 'sign_in.html';
         });
     </script>
 

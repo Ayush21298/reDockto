@@ -153,6 +153,10 @@
 	background-color: #5a6;
 }
 
+.recharge_in_button {
+	background-color: #5a6;
+}
+
 .save_profile_button {
 	background-color: #5a6;
 	display: none;
@@ -175,6 +179,10 @@
 }
 
 .otp_in_button {
+	background-color: #56a;
+}
+
+.otp_recharge_button {
 	background-color: #56a;
 }
 

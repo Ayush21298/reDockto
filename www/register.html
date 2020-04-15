@@ -119,13 +119,13 @@
             var temp_phone = $("#phone_in").val();
             var temp_pass = $("#password_in").val();
             var temp_pass2 = $("#password_in2").val();
-            
+
             var temp_otp = $("#otp_in").val();
 
             if(temp_otp == "0000"){
                 alert("Registration Successfull");
                 setCookie("phone_no", temp_phone, 30);
-                reload();    
+                window.location = 'sign_in.html';    
             } else {
                 alert("Wrong OTP");
             }
