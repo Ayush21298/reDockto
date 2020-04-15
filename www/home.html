@@ -58,18 +58,26 @@
 </head>
 
 <body>
-    <div class="app">
-        <h4><small>With You, Every Step Of The Way</small></h4>
-        <!-- <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div> -->
-        <!-- <a href="intro.html">go</a> -->
-        <script type="text/javascript">
-            var delay = 2000; 
-            setTimeout(function(){ window.location = 'intro.html'; }, delay);
-        </script>
+    <div data-role="page">
+
+        <div data-role="header" class="header">
+            <center>
+                <img src="img/logo.png" class="brand_logo">
+            </center>
+        </div><!-- /footer -->
+
+
+        <div data-role="footer" class="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#"><i class="fa fa-user navbar_btn"></i></a></li>
+                    <li><a href="#" class="ui-btn-active"><i class="fa fa-home navbar_btn"></i></a></li>
+                    <li><a href="#"><i class="fa fa-address-book navbar_btn"></i></a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div><!-- /footer -->
     </div>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">

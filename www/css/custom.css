@@ -1,0 +1,38 @@
+.container {
+	padding: 0px;
+}
+
+.carousel-img {
+	width:100vw;
+	height: 100vh !important;
+}
+
+.skip_btn {
+	color: white;
+	position: fixed;
+	z-index: 10;
+	top:1rem;
+	right: 1rem;
+}
+
+.header {
+	position: fixed;
+	top: 0px;
+	width: 100vw;
+	background: linear-gradient(0deg, #eee, #fff);
+	padding: 0.5rem;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100vw;
+}
+
+.brand_logo {
+	height: 3rem;
+}
+
+.navbar_btn {
+	font-size: 2rem;
+}
