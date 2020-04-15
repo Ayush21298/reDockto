@@ -202,3 +202,66 @@
 	/*color: #fff;*/
 	font-size: 2rem;
 }
+
+.counsellor_container {
+	width: 90vw;
+	/*height: 50vh;*/
+	margin: 5vw;
+	box-shadow: grey 2px 2px 2px 2px;
+	/*background-color: #8c7;*/
+	padding: 2rem;
+}
+
+.counsellor_pic {
+	width: 24vw;
+	height: 30vw;
+	display: inline-block;
+}
+
+.counsellor_pic img {
+	width: 100%;
+}
+
+.availibility {
+	margin: 1rem;
+	font-size: x-small;
+}
+
+.availibility .available {
+	width: 1rem;
+	height: 1rem;
+	background-color: green;
+	display: inline-block;
+}
+
+.availibility .busy {
+	width: 1rem;
+	height: 1rem;
+	background-color: red;
+	display: inline-block;
+}
+
+.availibility .queue {
+	width: 1rem;
+	height: 1rem;
+	background-color: olive;
+	display: inline-block;
+}
+
+.counsellor_info {
+	/*width: 10rem;*/
+	width: 50vw;
+	height: 12rem;
+	display: inline-block;
+	float: right;
+	overflow-y: scroll;
+}
+
+.call_btn {
+	font-size: 1rem;
+	margin-left: 1rem;
+	color: white;
+	background-color: green;
+	padding: 0.2rem;
+	text-align: center;
+}
