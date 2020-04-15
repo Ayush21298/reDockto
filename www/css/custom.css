@@ -162,6 +162,11 @@
 	display: none;
 }
 
+.view_history_button {
+	background-color: olive;
+	/*display: none;*/
+}
+
 .edit_profile_button {
 	background-color: #56a;
 }
@@ -264,4 +269,13 @@
 	background-color: green;
 	padding: 0.2rem;
 	text-align: center;
+}
+
+.history_container {
+	width: 90vw;
+	/*height: 50vh;*/
+	margin: 5vw;
+	box-shadow: grey 2px 2px 2px 2px;
+	/*background-color: #8c7;*/
+	padding: 2rem;
 }

@@ -66,27 +66,70 @@
             </center>
         </div><!-- /footer -->
 
+
         <div class="main_content">
-            <div class="profile_container">
-                <div class="profile_image_container">
-                    <img src="img/profile.png">
-                </div>
-                <div class="profile_information">
-                    <input type="text" name="name" id="name" placeholder="Full Name" class="profile_input">
-                    <input type="text" name="phone_no" id="phone_no" placeholder="Phone No. : 9999999999" class="wallet_input" disabled="">
-                    <input type="email" name="email" id="email" placeholder="Email : abc@xyz.com" class="profile_input">
-                    <input type="text" name="dob" id="dob" placeholder="DOB : DD/MM/YYYY" class="profile_input">
-                    <input type="text" name="profession" id="profession" placeholder="Profession : Student" class="profile_input">
-                    <input type="text" name="wallet" id="wallet" placeholder="Wallet Balance : &#8377; 0.00" class="wallet_input" disabled="">
-                    <div class="profile_btn view_history_button">View History</div>
-                    <div class="profile_btn save_profile_button">Save Profile</div>
-                    <div class="profile_btn recharge_button">Recharge Wallet</div>
-                    <div class="profile_btn edit_profile_button">Edit Profile</div>
-                    <div class="profile_btn sign_out_button"><a href="home.html">Sign Out</a></div>
+            
+            <div class="history_container">
+                <div>
+                    <h4>Invoice Details</h4>
+                    <b>Date</b> : 15/04/2020 @ 03:30 pm (IST)<br>
+                    <b>Counsellor</b> : Mr/s. Counsellor 1<br>
+                    <b>Net Duration</b> : 60 min<br>
+                    <b>Net Cost</b> : ₹ 999.00<br>
+
+                    <hr>
+
+                    <h4>Prescription</h4>
+                    <ol>
+                        <li>Take special care of the elderly, especially those with chronic disease. "We have to take extra care of them, and keep them safe from coronavirus," he said.
+
+                        <li>PM Modi asked the people to strictly adhere the 'Lakshman Rekha' of the lockdown and observe the social distancing norms. He urged all of us to wear homemade face-covers and masks without fail.
+
+                        <li>On boosting the immunity, he urged the people to follow protocol issued by the Ayush Ministry.
+
+                        <li>The prime minister emphasised the importance of Arogya Setu mobile app to stay safe and secure from coronavirus.
+
+                        <li>Be compassionate towards those who work with you. Do not sack them or cut their wages.
+
+                        <li>Help the poor and the needy as they are the ones who are the most affected by the stringent measures put in place to tackle the coronavirus situation.
+
+                        <li>Respect the efforts of Corona Warriors – doctors and nurses, sanitation workers and police force.
+
+                    </ol>
                 </div>
             </div>
+
+            <div class="history_container">
+                <div>
+                    <h4>Invoice Details</h4>
+                    <b>Date</b> : 15/04/2020 @ 03:30 pm (IST)<br>
+                    <b>Counsellor</b> : Mr/s. Counsellor 1<br>
+                    <b>Net Duration</b> : 60 min<br>
+                    <b>Net Cost</b> : ₹ 999.00<br>
+
+                    <hr>
+
+                    <h4>Prescription</h4>
+                    <ol>
+                        <li>Take special care of the elderly, especially those with chronic disease. "We have to take extra care of them, and keep them safe from coronavirus," he said.
+
+                        <li>PM Modi asked the people to strictly adhere the 'Lakshman Rekha' of the lockdown and observe the social distancing norms. He urged all of us to wear homemade face-covers and masks without fail.
+
+                        <li>On boosting the immunity, he urged the people to follow protocol issued by the Ayush Ministry.
+
+                        <li>The prime minister emphasised the importance of Arogya Setu mobile app to stay safe and secure from coronavirus.
+
+                        <li>Be compassionate towards those who work with you. Do not sack them or cut their wages.
+
+                        <li>Help the poor and the needy as they are the ones who are the most affected by the stringent measures put in place to tackle the coronavirus situation.
+
+                        <li>Respect the efforts of Corona Warriors – doctors and nurses, sanitation workers and police force.
+
+                    </ol>
+                </div>
+            </div>
+
         </div>
-        
 
     </div>
 
@@ -94,39 +137,10 @@
         function reload(){
             if(getCookie("phone_no") == "") {
                 window.location = 'sign_in.html';
-            } else {
-                $("#phone_no").val("Phone No. : "+getCookie("phone_no"));
-                $("#name").val("Full Name : "+getCookie("name"));
-                $("#email").val("Email : "+getCookie("email"));
-                $("#dob").val("DOB : "+getCookie("dob"));
-                $("#profession").val("Profession : "+getCookie("profession"));
-                $("#wallet").val("Wallet Balance : ₹ "+getCookie("wallet"));
             }
         }
 
         $(document).ready(function() {
-            $(".profile_input").prop('disabled',true);
-            // alert(document.cookie);
-            // setCookie("phone_no", "9999999999", 30);
-            // alert(document.cookie);
-            reload();
-        });
-        $(".edit_profile_button").click(function() {
-            $(".profile_btn").toggle();
-            $(".profile_input").prop('disabled',false);
-        });
-        $(".save_profile_button").click(function() {
-            $(".profile_btn").toggle();
-            $(".profile_input").prop('disabled',true);
-        });
-        $(".recharge_button").click(function() {
-            window.location = 'recharge_wallet.html';
-        });
-        $(".view_history_button").click(function() {
-            window.location = 'view_history.html';
-        });
-        $(".sign_out_button").click(function() {
-            setCookie("phone_no", "", 30);
             reload();
         });
     </script>
