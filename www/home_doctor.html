@@ -67,43 +67,70 @@
         </div><!-- /footer -->
 
 
+        <!-- <div data-role="footer" class="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#"><i class="fa fa-user navbar_btn"></i></a></li>
+                    <li><a href="#" class="ui-btn-active"><i class="fa fa-home navbar_btn"></i></a></li>
+                    <li><a href="#"><i class="fa fa-address-book navbar_btn"></i></a></li>
+                </ul>
+            </div>
+        </div> -->
         <div class="main_content">
-            
-            <h1>Who are you ?</h1>
-
-            <hr>
-
-            <div class="counsellor_container" onclick = "window.location = 'home_doctor.html';">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                </div>
-                <div class="counsellor_info">
-                    <h2>Counsellor</h2>
-                    (registration Compulsory)
-                </div>
+            <div class="sec_sel" onclick = "window.location = 'video.html';">
+                <img src="img/appointment.png">
+                <p>
+                    Appointments
+                </p>
             </div>
-
-            <div class="counsellor_container" onclick = "window.location = 'home.html';">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                </div>
-                <div class="counsellor_info">
-                    <h2>Patient</h2>
-                    (registration Not Compulsory)
-                </div>
+            <div class="sec_sel" onclick = "window.location = 'therapy.html';">
+                <img src="img/doctopad.png">
+                <p>
+                    Doctopad
+                </p>
             </div>
-
-            
-
+            <div class="sec_sel" onclick = "window.location = 'counsellor.html';">
+                <img src="img/video.png">
+                <p>
+                    Video Upload
+                </p>
+            </div>
+            <div class="sec_sel" onclick = "window.location = 'audio_book.html';">
+                <img src="img/therapy.png">
+                <p>
+                    Therapy Upload
+                </p>
+            </div>
+            <div class="sec_sel" onclick = "window.location = 'expert_opinion.html';">
+                <img src="img/history.png">
+                <p>
+                    Couselling History
+                </p>
+            </div>
+            <div class="sec_sel" onclick = "window.location = 'profile.html';">
+                <img src="img/profile.png">
+                <p>
+                    Profile
+                </p>
+            </div>
         </div>
-
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
+        // alert(getCookie("phone_no"));
     </script>
 </body>
 
 </html>
+
+<!-- Available/Busy Toggle Bar
+
+Appointment (similar to doctopad)
+Doctopad
+Couselling History money and customer today, 1 week, 1 month
+Video Upload (link after uploading) status
+Therapy Upload (link after uploading) status
+Profile -->
