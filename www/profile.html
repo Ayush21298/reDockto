@@ -58,54 +58,46 @@
 </head>
 
 <body>
-    <!-- <div class="app">
-        <h4><small>Fuck Off</small></h4>
-        <script type="text/javascript">
-            var delay = 2000; 
-            setTimeout(function(){ window.location = 'intro.html'; }, delay);
-        </script>
-    </div> -->
+    <div data-role="page">
 
-    <div class="container">
-      <!-- <h2>Carousel Example</h2>   -->
-      <div id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+        <div data-role="header" class="header">
+            <center>
+                <img src="img/logo.png" class="brand_logo">
+            </center>
+        </div><!-- /footer -->
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="img/la.jpg" alt="Los Angeles" class="carousel-img">
-          </div>
-
-          <div class="item">
-            <img src="img/chicago.jpg" alt="Chicago" class="carousel-img">
-          </div>
-        
-          <div class="item">
-            <img src="img/ny.jpg" alt="New york" class="carousel-img">
-          </div>
+        <div class="main_content">
+            <div class="profile_container">
+                <div class="profile_image_container">
+                    <img src="img/profile.png">
+                </div>
+                <div class="profile_information">
+                    <input type="text" name="name" id="name" placeholder="Full Name" class="profile_input" disabled="">
+                    <input type="email" name="email" id="email" placeholder="Email : abc@xyz.com" class="profile_input" disabled="">
+                    <input type="text" name="date_of_birth" id="date_of_birth" placeholder="DOB : DD/MM/YYYY" class="profile_input" disabled="">
+                    <input type="text" name="profession" id="profession" placeholder="Profession : Student" class="profile_input" disabled="">
+                    <input type="text" name="wallet" id="wallet" placeholder="Wallet Balance : &#8377; 0.00" class="profile_input" disabled="">
+                    <div class="profile_btn save_profile_button">Save Profile</div>
+                    <div class="profile_btn recharge_button">Recharge Wallet</div>
+                    <div class="profile_btn edit_profile_button">Edit Profile</div>
+                    <div class="profile_btn sign_out_button">Sign Out</div>
+                </div>
+            </div>
         </div>
+        
 
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-          <!-- <i class="fa fa-address-book" style="vertical-align: center;"></i> -->
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
     </div>
 
-    <a href="home.html"><small class="skip_btn">Skip</small></a>
-
+    <script type="text/javascript">
+        $(".edit_profile_button").click(function() {
+            $(".profile_btn").toggle();
+            $("#name").prop("disabled", false);
+        });
+        $(".save_profile_button").click(function() {
+            $(".profile_btn").toggle();
+            $("#name").prop("disabled", true);
+        });
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
