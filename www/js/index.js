@@ -78,6 +78,10 @@ $(".available_toggle").click(function() {
   $(".available_toggle").toggle();
 });
 
+$(".sos_btn").click(function() {
+  alert("SOS will be integrated after backend !");
+});
+
 String.prototype.format = function () {
         var a = this;
         for (var k in arguments) {

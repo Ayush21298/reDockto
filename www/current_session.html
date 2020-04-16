@@ -63,78 +63,65 @@
         <div data-role="header" class="header">
             <center>
                 <img src="img/logo.png" class="brand_logo">
-                <div class="sos_btn">
-                    SOS <i class="fa fa-ambulance"></i>
+                <div class="available_toggle available_toggle_on">
+                    Available <i class="fa fa-toggle-on"></i>
+                </div>
+                <div class="available_toggle available_toggle_off">
+                    Busy <i class="fa fa-toggle-off"></i>
                 </div>
             </center>
         </div><!-- /footer -->
 
 
         <div class="main_content">
+
+            <center><h3>Docktopad</h3></center>
             
-            <div class="counsellor_container">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                    <div class="availibility">
-                        <div class="available"></div>
-                        Available
+            <div class="history_container">
+                <div>
+                    <h4>Meeting ID</h4>
+                    <div>
+                        <input type="text" name="therapy_title_in" id="therapy_title_in" placeholder="RMT001">
                     </div>
-                    <div class="call_btn">
-                        <i class="fa fa-phone" onclick="alert('Will be integrated after backend !')"> Call Now</i>
+                    <hr>
+                    <h4>Patient ID</h4>
+                    <div>
+                        <input type="text" name="therapy_url_in" id="therapy_url_in" placeholder="RPT008">
                     </div>
-                </div>
-                <div class="counsellor_info">
-                    <h4>Mr/s. Counsellor 1</h4>
-                    <b>Location</b> : Gurgaon<br>
-                    <b>Eligibility</b> : Psychologist<br>
-                    <b>Experience</b> : 10 yrs (240 patients)<br>
-                    <b>Rate (per hr.)</b> : ₹ 999.00<br>
-                </div>
-            </div>
-
-            <div class="counsellor_container">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                    <div class="availibility">
-                        <div class="busy"></div>
-                        Busy
+                    <hr>
+                    <h4>Prescription</h4>
+                    <div>
+                        <textarea name="therapy_description_in" id="therapy_description_in" placeholder=". . ."></textarea>
                     </div>
-                    <!-- <div class="call_btn">
-                        <i class="fa fa-phone"> Call Now</i>
-                    </div> -->
-                </div>
-                <div class="counsellor_info">
-                    <h4>Mr/s. Counsellor 2</h4>
-                    <b>Location</b> : Delhi<br>
-                    <b>Eligibility</b> : Psychologist<br>
-                    <b>Experience</b> : 10 yrs (240 patients)<br>
-                    <b>Rate (per hr.)</b> : ₹ 999.00<br>
-                </div>
-            </div>
-
-            <div class="counsellor_container">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                    <div class="availibility">
-                        <div class="queue"></div>
-                        In Queue
-                    </div>
-                    <!-- <div class="call_btn">
-                        <i class="fa fa-phone"> Call Now</i>
-                    </div> -->
-                </div>
-                <div class="counsellor_info">
-                    <h4>Mr/s. Counsellor 3</h4>
-                    <b>Location</b> : Noida<br>
-                    <b>Eligibility</b> : Psychologist<br>
-                    <b>Experience</b> : 10 yrs (240 patients)<br>
-                    <b>Rate (per hr.)</b> : ₹ 999.00<br>
+                    <div class="profile_btn therapy_upload_button">Send</div>
                 </div>
             </div>
 
         </div>
 
     </div>
+
+    <script type="text/javascript">
+        function reload(){
+            if(getCookie("phone_no") == "") {
+                window.location = 'sign_in.html';
+            }
+        }
+
+        $(document).ready(function() {
+            reload();
+        });
+
+        $(".therapy_upload_button").click(function(){
+            var temp_title = $("#therapy_title_in").val();
+            var temp_url = $("#therapy_url_in").val();
+            var temp_description = $("#therapy_description_in").val();
+
+            var temp_res = "Prescription Added Succesfully";
+
+            alert(temp_res);
+        });
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

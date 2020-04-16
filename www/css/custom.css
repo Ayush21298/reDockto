@@ -195,6 +195,10 @@
 	background-color: #56a;
 }
 
+.doctopad_button {
+	background-color: #56a;
+}
+
 .appointment_check_button {
 	background-color: #56a;
 }
@@ -276,7 +280,7 @@
 .counsellor_info {
 	/*width: 10rem;*/
 	width: 50vw;
-	height: 12rem;
+	height: 14rem;
 	display: inline-block;
 	float: right;
 	overflow-y: scroll;
@@ -314,4 +318,12 @@
 .available_toggle_off {
 	color: red;
 	display: none;
+}
+
+.sos_btn {
+	text-align: center;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	color: red;
 }
