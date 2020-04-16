@@ -153,7 +153,15 @@
 	background-color: #5a6;
 }
 
+.withdraw_button {
+	background-color: #5a6;
+}
+
 .recharge_in_button {
+	background-color: #5a6;
+}
+
+.withdraw_in_button {
 	background-color: #5a6;
 }
 
@@ -183,11 +191,19 @@
 	background-color: #56a;
 }
 
+.therapy_upload_button {
+	background-color: #56a;
+}
+
 .otp_in_button {
 	background-color: #56a;
 }
 
 .otp_recharge_button {
+	background-color: #56a;
+}
+
+.otp_withdraw_button {
 	background-color: #56a;
 }
 

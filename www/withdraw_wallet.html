@@ -72,32 +72,21 @@
             </center>
         </div><!-- /footer -->
 
-
         <div class="main_content">
-
-            <center><h3>Upload Therapy</h3></center>
-            
-            <div class="history_container">
-                <div>
-                    <h4>Title</h4>
-                    <div>
-                        <input type="text" name="therapy_title_in" id="therapy_title_in" placeholder="Title : Basic Therapy">
-                    </div>
-                    <hr>
-                    <h4>URL</h4>
-                    <div>
-                        <input type="text" name="therapy_url_in" id="therapy_url_in" placeholder="URL : http://abc.xyz/pqr">
-                    </div>
-                    <hr>
-                    <h4>Description</h4>
-                    <div>
-                        <textarea name="therapy_description_in" id="therapy_description_in" placeholder="ABC"></textarea>
-                    </div>
-                    <div class="profile_btn therapy_upload_button">Upload</div>
+            <div class="sign_in_container">
+                <div class="sign_in_form">
+                    <input type="text" name="withdraw_amt_in" id="withdraw_amt_in" placeholder="Withdraw Amount : 100.00" class="sign_in_input">
                 </div>
+                <div class="profile_btn withdraw_in_button">Withdraw From Wallet</div>
             </div>
-
+            <div class="otp_container">
+                <div class="sign_in_form">
+                    <input type="password" name="otp_withdraw" id="otp_withdraw" placeholder="OTP" class="sign_in_input">
+                </div>
+                <div class="profile_btn otp_withdraw_button">Verify OTP</div>
+            </div>
         </div>
+        
 
     </div>
 
@@ -109,7 +98,41 @@
         }
 
         $(document).ready(function() {
-            reload();
+
+        });
+        $(".withdraw_in_button").click(function() {
+            var temp_amt = parseFloat($("#withdraw_amt_in").val());
+
+            if( temp_amt > 0.0 ){
+                if( temp_amt < parseFloat(getCookie("wallet")) ){
+                    $(".sign_in_container").hide();
+                    $(".otp_container").show();
+                } else {
+                    alert("Insufficient Balance");
+                    $("#recharge_amt_in").val("");
+                }
+            } else {
+                alert("Invalid Recharge Amount");
+                $("#recharge_amt_in").val("");
+            }
+            
+        });
+        $(".otp_withdraw_button").click(function() {
+            var temp_amt = parseFloat($("#withdraw_amt_in").val());
+            
+            var temp_otp = $("#otp_withdraw").val();
+
+            if(temp_otp == "0000"){
+                alert("Withdraw Request Registered Succesfully");
+                setCookie("wallet", (parseFloat(getCookie("wallet")) - temp_amt).toString(), 30);
+                window.location = 'profile_doctor.html';
+            } else {
+                alert("Wrong OTP");
+            }
+            
+        });
+        $(".sign_in_button").click(function() {
+            window.location = 'sign_in.html';
         });
     </script>
 
