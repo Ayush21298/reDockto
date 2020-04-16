@@ -111,6 +111,25 @@
         $(document).ready(function() {
             reload();
         });
+
+        $(".therapy_upload_button").click(function(){
+            var temp_title = $("#therapy_title_in").val();
+            var temp_url = $("#therapy_url_in").val();
+            var temp_description = $("#therapy_description_in").val();
+
+            var temp_res = "Upload Request Added\
+                            \
+                            { Title : {0}, \
+                            \
+                            URL : {1}, \
+                            \
+                            Description : {2} } \
+                            \
+                            Current Status : Pending for Approval\
+                            ".format(temp_title, temp_url, temp_description);
+
+            alert(temp_res);
+        });
     </script>
 
     <script type="text/javascript" src="cordova.js"></script>

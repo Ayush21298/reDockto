@@ -77,3 +77,11 @@ var logged_in = false;
 $(".available_toggle").click(function() {
   $(".available_toggle").toggle();
 });
+
+String.prototype.format = function () {
+        var a = this;
+        for (var k in arguments) {
+            a = a.replace(new RegExp("\\{" + k + "\\}", 'g'), arguments[k]);
+        }
+        return a
+    }
