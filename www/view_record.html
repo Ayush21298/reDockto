@@ -75,61 +75,31 @@
 
         <div class="main_content">
 
-            <center><h3>Patient List</h3></center>
-
-            <div class="history_container" style="max-height: 60vh; overflow-y: scroll;">
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-            </div>
-            
             <div class="history_container">
-                <h3>Add Patient</h3>
+                <h3>View Record</h3>
                     <hr>
                 <div id="add_patient_div">
-                    <!-- <h4>Patient ID</h4>
+                    <h4>Patient ID</h4>
                     <div>
-                        <input type="text" name="therapy_title_in" id="therapy_title_in" placeholder="RMT001">
+                        <input type="text" name="therapy_title_in" id="therapy_title_in" value="PAT008" disabled="">
                     </div>
-                    <hr> -->
+                    <hr>
+                    <h4>Patient Name</h4>
+                    <div>
+                        <input type="text" name="therapy_title_in" id="therapy_title_in" value="Patient 8" disabled="">
+                    </div>
+                    <hr>
+                    <h4>Notes</h4>
+                    <div>
+                        <textarea name="therapy_title_in" id="therapy_title_in" placeholder="
+                        Notes ...
+                        Notes ...
+                        Notes ...
+                        Notes ..." disabled=""></textarea>
+                    </div>
+                    <hr>
                 </div>
-                <div class="profile_btn doctopad_button" onclick="alert('Patient Added Succesfully !')">Add</div>
+                <div class="profile_btn doctopad_button" onclick="window.location = 'update_record.html'">Edit Record</div>
             </div>
 
         </div>
@@ -147,17 +117,7 @@
             reload();
 
             var fields = [ 
-                            ["Patient Name", "text"],
-                            ["Patient ID", "text"],
-                            ["Gender", "text"],
-                            ["Date of Birth", "date"],
-                            ["Date of Joining", "date"],
-                            ["Patient ID", "text"],
-                            ["Nominee Name", "text"],
-                            ["Nominee ID", "text"],
-                            ["Gender (Nominee)", "text"],
-                            ["Date of Birth (Nominee)", "date"],
-                            ["Address", "text"],
+
                         ];
 
             for (var i = 0; i < fields.length; i++) {

@@ -327,3 +327,8 @@
 	right: 1rem;
 	color: red;
 }
+
+.patient {
+	box-shadow: grey 2px 2px 2px 2px;
+	padding: 2rem;
+}
