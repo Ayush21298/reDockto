@@ -279,3 +279,19 @@
 	/*background-color: #8c7;*/
 	padding: 2rem;
 }
+
+.available_toggle {
+	text-align: center;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+}
+
+.available_toggle_on {
+	color: green;
+}
+
+.available_toggle_off {
+	color: red;
+	display: none;
+}

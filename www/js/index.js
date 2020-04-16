@@ -73,3 +73,7 @@ function getCookie(cname) {
 }
 
 var logged_in = false;
+
+$(".available_toggle").click(function() {
+  $(".available_toggle").toggle();
+});
