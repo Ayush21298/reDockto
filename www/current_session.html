@@ -75,26 +75,27 @@
 
         <div class="main_content">
 
-            <center><h3>Docktopad</h3></center>
-            
             <div class="history_container">
-                <div>
-                    <h4>Meeting ID</h4>
-                    <div>
-                        <input type="text" name="therapy_title_in" id="therapy_title_in" placeholder="RMT001">
-                    </div>
+                <h3>Current Session</h3>
                     <hr>
+                <div id="add_patient_div">
                     <h4>Patient ID</h4>
                     <div>
-                        <input type="text" name="therapy_url_in" id="therapy_url_in" placeholder="RPT008">
+                        <input type="text" name="therapy_title_in" id="therapy_title_in" value="PAT008" disabled="">
                     </div>
                     <hr>
-                    <h4>Prescription</h4>
+                    <h4>Patient Name</h4>
                     <div>
-                        <textarea name="therapy_description_in" id="therapy_description_in" placeholder=". . ."></textarea>
+                        <input type="text" name="therapy_title_in" id="therapy_title_in" value="Patient 8" disabled="">
                     </div>
-                    <div class="profile_btn therapy_upload_button">Send</div>
+                    <hr>
+                    <h4>Notes</h4>
+                    <div>
+                        <textarea name="therapy_title_in" id="therapy_title_in" placeholder="Notes ..."></textarea>
+                    </div>
+                    <hr>
                 </div>
+                <div class="profile_btn doctopad_button" onclick="alert('Current Session Updated Succesfully !')">Update</div>
             </div>
 
         </div>
@@ -110,6 +111,20 @@
 
         $(document).ready(function() {
             reload();
+
+            var fields = [ 
+
+                        ];
+
+            for (var i = 0; i < fields.length; i++) {
+                var ss = '<h4>{0}</h4>\
+                    <div>\
+                        <input type="{1}" style="width : 100%;" name="{0}" id="{0}" placeholder="{0}">\
+                    </div>\
+                    <hr>'.format(fields[i][0], fields[i][1]);
+
+                $("#add_patient_div").html($("#add_patient_div").html() + ss);
+            }
         });
 
         $(".therapy_upload_button").click(function(){
