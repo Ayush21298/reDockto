@@ -62,81 +62,88 @@
 
         <div data-role="header" class="header">
             <center>
-                <div class="goto_home" onclick="window.location='home_doctor.html';">
+                <div class="goto_home" onclick="window.location='home.html';">
                     <i class="fa fa-home"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
-                <div class="available_toggle available_toggle_on">
-                    Available <i class="fa fa-toggle-on"></i>
-                </div>
-                <div class="available_toggle available_toggle_off">
-                    Busy <i class="fa fa-toggle-off"></i>
+                <div class="sos_btn">
+                    SOS <i class="fa fa-ambulance"></i>
                 </div>
             </center>
         </div><!-- /footer -->
 
         <div class="main_content">
-            <div class="sign_in_container">
-                <div class="sign_in_form">
-                    <input type="text" name="withdraw_amt_in" id="withdraw_amt_in" placeholder="Withdraw Amount : 100.00" class="sign_in_input">
+            
+            <div class="counsellor_container">
+                <div class="counsellor_pic">
+                    <img src="img/profile.png">
+                    <div class="availibility">
+                        <div class="available"></div>
+                        Available
+                    </div>
+                    <div class="call_btn">
+                        <i class="fa fa-phone" onclick="alert('Will be integrated after backend !'); window.location='counsellor_feedback.html';"> Call Now</i>
+                    </div>
                 </div>
-                <div class="profile_btn withdraw_in_button">Withdraw From Wallet</div>
-            </div>
-            <div class="otp_container">
-                <div class="sign_in_form">
-                    <input type="password" name="otp_withdraw" id="otp_withdraw" placeholder="OTP" class="sign_in_input">
+                <div class="counsellor_info">
+                    <h4>Mr/s. Counsellor 1</h4>
+                    <b>Location</b> : Gurgaon<br>
+                    <b>Eligibility</b> : Psychologist<br>
+                    <b>Experience</b> : 10 yrs (240 patients)<br>
+                    <b>Rate (per hr.)</b> : ₹ 999.00<br>
                 </div>
-                <div class="profile_btn otp_withdraw_button">Verify OTP</div>
             </div>
+
+            <div class="counsellor_container" >
+                    <center>
+
+                    <h4>Your Feedback</h4>
+                    
+                    <hr>
+
+                    <b>Talk Duration</b> : 60min<br>
+                    <b>Amount</b> : ₹ 999.00<br>
+
+                    <hr>
+
+                    <i class="fa fa-star-o lg feedback_star_no" onclick="give_feedback(1);"></i>
+                    <i class="fa fa-star lg feedback_star_yes" onclick="give_feedback(1);"></i>
+                    <i class="fa fa-star-o lg feedback_star_no" onclick="give_feedback(2);"></i>
+                    <i class="fa fa-star lg feedback_star_yes" onclick="give_feedback(2);"></i>
+                    <i class="fa fa-star-o lg feedback_star_no" onclick="give_feedback(3);"></i>
+                    <i class="fa fa-star lg feedback_star_yes" onclick="give_feedback(3);"></i>
+                    <i class="fa fa-star-o lg feedback_star_no" onclick="give_feedback(4);"></i>
+                    <i class="fa fa-star lg feedback_star_yes" onclick="give_feedback(4);"></i>
+                    <i class="fa fa-star-o lg feedback_star_no" onclick="give_feedback(5);"></i>
+                    <i class="fa fa-star lg feedback_star_yes" onclick="give_feedback(5);"></i>
+
+                    <div class="profile_btn therapy_upload_button" onclick="alert('Feedback Submitted'); window.location = 'home.html';">Submit</div>
+
+                    </center>
+            </div>
+
         </div>
-        
 
     </div>
 
     <script type="text/javascript">
-        function reload(){
-            if(getCookie("phone_no") == "") {
-                window.location = 'sign_in.html';
-            }
+        function give_feedback(num) {
+            $( ".feedback_star_yes" ).each(function( index ) {
+              if( index < num ){
+                $( this ).show();
+              } else {
+                $( this ).hide();
+              }
+            });
+
+            $( ".feedback_star_no" ).each(function( index ) {
+              if( index < num ){
+                $( this ).hide();
+              } else {
+                $( this ).show();
+              }
+            });
         }
-
-        $(document).ready(function() {
-
-        });
-        $(".withdraw_in_button").click(function() {
-            var temp_amt = parseFloat($("#withdraw_amt_in").val());
-
-            if( temp_amt > 0.0 ){
-                if( temp_amt < parseFloat(getCookie("wallet")) ){
-                    $(".sign_in_container").hide();
-                    $(".otp_container").show();
-                } else {
-                    alert("Insufficient Balance");
-                    $("#recharge_amt_in").val("");
-                }
-            } else {
-                alert("Invalid Recharge Amount");
-                $("#recharge_amt_in").val("");
-            }
-            
-        });
-        $(".otp_withdraw_button").click(function() {
-            var temp_amt = parseFloat($("#withdraw_amt_in").val());
-            
-            var temp_otp = $("#otp_withdraw").val();
-
-            if(temp_otp == "0000"){
-                alert("Withdraw Request Registered Succesfully");
-                setCookie("wallet", (parseFloat(getCookie("wallet")) - temp_amt).toString(), 30);
-                window.location = 'profile_doctor.html';
-            } else {
-                alert("Wrong OTP");
-            }
-            
-        });
-        $(".sign_in_button").click(function() {
-            window.location = 'sign_in.html';
-        });
     </script>
 
     <script type="text/javascript" src="cordova.js"></script>

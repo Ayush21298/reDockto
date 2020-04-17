@@ -311,6 +311,14 @@
 	right: 1rem;
 }
 
+.goto_home {
+	text-align: center;
+	position: fixed;
+	top: 0.1rem;
+	left: 1.5rem;
+	font-size: 3rem;
+}
+
 .available_toggle_on {
 	color: green;
 }
@@ -331,4 +339,13 @@
 .patient {
 	box-shadow: grey 2px 2px 2px 2px;
 	padding: 2rem;
+}
+
+.feedback_star_yes {
+	font-size: 4rem;
+	display: none;
+}
+
+.feedback_star_no {
+	font-size: 4rem;
 }
