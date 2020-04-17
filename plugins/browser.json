@@ -30,6 +30,12 @@
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.redockto.userapp"
+    },
+    "cordova-plugin-pip": {
+      "PACKAGE_NAME": "com.redockto.userapp"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.redockto.userapp"
     }
   },
   "dependent_plugins": {
