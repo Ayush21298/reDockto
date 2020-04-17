@@ -78,6 +78,67 @@
 
         <div class="main_content">
 
+
+            <center><h3>Calls Pipelined</h3></center>
+            
+            <div class="history_container">
+                <div style="float: left; width: 60vw;">
+                    <table>
+                        <tr>
+                            <th>Patient ID</th>
+                            <td> : RPT001</td>
+                        </tr>
+                        <tr>
+                            <th>Patient Name</th>
+                            <td> : Patient 1</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="call_handler call_connect">Connect</div>
+                    <div class="call_handler call_ignore">Ignore</div>
+                </div>
+            </div>
+
+            <div class="history_container">
+                <div style="float: left; width: 60vw;">
+                    <table>
+                        <tr>
+                            <th>Patient ID</th>
+                            <td> : RPT002</td>
+                        </tr>
+                        <tr>
+                            <th>Patient Name</th>
+                            <td> : Patient 2</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="call_handler call_connect">Connect</div>
+                    <div class="call_handler call_ignore">Ignore</div>
+                </div>
+            </div>
+
+            <div class="history_container">
+                <div style="float: left; width: 60vw;">
+                    <table>
+                        <tr>
+                            <th>Patient ID</th>
+                            <td> : RPT003</td>
+                        </tr>
+                        <tr>
+                            <th>Patient Name</th>
+                            <td> : Patient 3</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="call_handler call_connect">Connect</div>
+                    <div class="call_handler call_ignore">Ignore</div>
+                </div>
+            </div>
+
+
             <center><h3>Counselling History</h3></center>
             
             <div class="history_container">
@@ -178,6 +239,15 @@
         $(document).ready(function() {
             reload();
         });
+
+        $(".call_connect").click(function() {
+            alert('Will be implemented during call !');
+        });
+
+        $(".call_ignore").click(function() {
+            alert('Will be implemented during call !');
+        });
+
     </script>
 
     <script type="text/javascript" src="cordova.js"></script>

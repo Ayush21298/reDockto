@@ -349,3 +349,20 @@
 .feedback_star_no {
 	font-size: 4rem;
 }
+
+.call_handler {
+	color: white;
+	display: inline-block;
+	margin: 0.2rem;
+	padding: 0.5rem;
+	font-size: 1rem;
+	width: 6rem;
+}
+
+.call_connect {
+	background-color: green;
+}
+
+.call_ignore {
+	background-color: red;
+}
