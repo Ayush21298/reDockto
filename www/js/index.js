@@ -82,6 +82,7 @@ $(".sos_btn").click(function() {
   alert("SOS will be integrated after backend !");
 });
 
+
 String.prototype.format = function () {
         var a = this;
         for (var k in arguments) {
@@ -96,6 +97,9 @@ var base_url = "http://192.168.43.156:8000/";
 var user_sign_in_url = base_url + "user/login/";
 var user_register_url = base_url + "user/register/";
 var user_update_url = base_url + "user/update/";
+
+var user_send_otp_url = base_url + "user/send_otp/";
+var user_get_otp_url = base_url + "user/get_otp/";
 
 var video_get_url = base_url + "video/all/";
 var video_upload_url = base_url + "video/upload/";
