@@ -121,3 +121,7 @@ var appointment_view_url = base_url + "appointment/view/";
 var appointment_add_url = base_url + "appointment/add/";
 
 var doctor_history_url = base_url + "counselling/doctor/";
+
+
+var payment_create_url = base_url + "payment/create/";
+var payment_verify_url = base_url + "payment/verify/";

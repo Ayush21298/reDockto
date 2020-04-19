@@ -85,6 +85,72 @@
                 </div>
                 <div class="profile_btn otp_recharge_button">Verify OTP</div>
             </div>
+<!--             <button id="rzp-button1">Pay</button>
+ -->            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+                $(".recharge_in_button").click(function() {
+
+                    var temp_amt = parseFloat($("#recharge_amt_in").val());
+                    temp_amt = parseInt(temp_amt*100);
+
+                    $.post(payment_create_url,
+                        {
+                            "amount" : temp_amt
+                        },
+                        function(data, status){
+                            var order_id = data["order_id"];
+
+
+                            var options = {
+                                        "key": "rzp_test_JyofO2jyHvDBgJ", // Enter the Key ID generated from the Dashboard
+                                        "amount": temp_amt.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                                        "currency": "INR",
+                                        "name": "reDockto",
+                                        "description": "Test Wallet Recharge",
+                                        "image": "img/logo.png",
+                                        "order_id": order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                                        "handler": function (response){
+                                            // alert(response.razorpay_payment_id);
+                                            // alert(response.razorpay_order_id);
+                                            // alert(response.razorpay_signature)
+                                            $.post(payment_verify_url,
+                                            {
+                                                "razorpay_payment_id" : response.razorpay_payment_id,
+                                                "razorpay_order_id" : response.razorpay_order_id,
+                                                "razorpay_signature" : response.razorpay_signature
+                                            },
+                                            function(data, status){
+                                                if(data["status"] != "Failed"){
+                                                    alert("OTP sent to mobile no.");
+                                                } else {
+                                                    alert("Server Error");
+                                                }
+                                            });
+                                        },
+                                        "prefill": {
+                                            "name": getCookie("name"),
+                                            "email": getCookie("email"),
+                                            "contact": getCookie("phone_no")
+                                        },
+                                        "notes": {
+                                            "address": "IIT Delhi"
+                                        },
+                                        "theme": {
+                                            "color": "#528FF0"
+                                        }
+                                    };
+                                    var rzp1 = new Razorpay(options);
+                                    rzp1.open();;
+                                    // document.getElementById('rzp-button1').onclick = function(e){
+                                    //     rzp1.open();;
+                                    //     e.preventDefault();
+                                    // }
+
+
+                        });
+
+                });
+            </script>
         </div>
         
 
@@ -100,32 +166,32 @@
         $(document).ready(function() {
 
         });
-        $(".recharge_in_button").click(function() {
-            var temp_amt = parseFloat($("#recharge_amt_in").val());
+        // $(".recharge_in_button").click(function() {
+        //     var temp_amt = parseFloat($("#recharge_amt_in").val());
 
-            if( temp_amt > 0.0 ){
-                $(".sign_in_container").hide();
-                $(".otp_container").show();
-            } else {
-                alert("Invalid Recharge Amount");
-                $("#recharge_amt_in").val("");
-            }
+        //     if( temp_amt > 0.0 ){
+        //         $(".sign_in_container").hide();
+        //         $(".otp_container").show();
+        //     } else {
+        //         alert("Invalid Recharge Amount");
+        //         $("#recharge_amt_in").val("");
+        //     }
             
-        });
-        $(".otp_recharge_button").click(function() {
-            var temp_amt = parseFloat($("#recharge_amt_in").val());
+        // });
+        // $(".otp_recharge_button").click(function() {
+        //     var temp_amt = parseFloat($("#recharge_amt_in").val());
             
-            var temp_otp = $("#otp_recharge").val();
+        //     var temp_otp = $("#otp_recharge").val();
 
-            if(temp_otp == "0000"){
-                alert("Recharge Successfull");
-                setCookie("wallet", (parseFloat(getCookie("wallet")) + temp_amt).toString(), 30);
-                window.location = 'profile.html';
-            } else {
-                alert("Wrong OTP");
-            }
+        //     if(temp_otp == "0000"){
+        //         alert("Recharge Successfull");
+        //         setCookie("wallet", (parseFloat(getCookie("wallet")) + temp_amt).toString(), 30);
+        //         window.location = 'profile.html';
+        //     } else {
+        //         alert("Wrong OTP");
+        //     }
             
-        });
+        // });
         $(".sign_in_button").click(function() {
             window.location = 'sign_in.html';
         });
