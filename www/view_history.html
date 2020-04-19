@@ -73,9 +73,9 @@
         </div><!-- /footer -->
 
 
-        <div class="main_content">
+        <div class="main_content" id="main_content_view_history">
             
-            <div class="history_container">
+            <!-- <div class="history_container">
                 <div>
                     <h4>Invoice Details</h4>
                     <b>Date</b> : 15/04/2020 @ 03:30 pm (IST)<br>
@@ -103,37 +103,8 @@
 
                     </ol>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="history_container">
-                <div>
-                    <h4>Invoice Details</h4>
-                    <b>Date</b> : 15/04/2020 @ 03:30 pm (IST)<br>
-                    <b>Counsellor</b> : Mr/s. Counsellor 1<br>
-                    <b>Net Duration</b> : 60 min<br>
-                    <b>Net Cost</b> : ₹ 999.00<br>
-
-                    <hr>
-
-                    <h4>Prescription</h4>
-                    <ol>
-                        <li>Take special care of the elderly, especially those with chronic disease. "We have to take extra care of them, and keep them safe from coronavirus," he said.
-
-                        <li>PM Modi asked the people to strictly adhere the 'Lakshman Rekha' of the lockdown and observe the social distancing norms. He urged all of us to wear homemade face-covers and masks without fail.
-
-                        <li>On boosting the immunity, he urged the people to follow protocol issued by the Ayush Ministry.
-
-                        <li>The prime minister emphasised the importance of Arogya Setu mobile app to stay safe and secure from coronavirus.
-
-                        <li>Be compassionate towards those who work with you. Do not sack them or cut their wages.
-
-                        <li>Help the poor and the needy as they are the ones who are the most affected by the stringent measures put in place to tackle the coronavirus situation.
-
-                        <li>Respect the efforts of Corona Warriors – doctors and nurses, sanitation workers and police force.
-
-                    </ol>
-                </div>
-            </div>
 
         </div>
 
@@ -148,6 +119,32 @@
 
         $(document).ready(function() {
             reload();
+
+            $("#main_content_view_history").html("");
+
+            $.get(patient_history_url,
+            {"phone_no" : getCookie("phone_no")},
+            function(data, status){
+                for (var i = 0; i < data.length ; i++) {
+                    var temp = `<div class="history_container">
+                <div>
+                    <h4>Invoice Details</h4>
+                    <b>Date</b> : ${data[i]["date"]}<br>
+                    <b>Start Time</b> : ${data[i]["start_time"]}<br>
+                    <b>End Time</b> : ${data[i]["end_time"]}<br>
+                    <b>Counsellor</b> : ${data[i]["doctor_name"]}<br>
+                    <b>Net Cost</b> : ₹ ${data[i]["money"]}<br>
+
+                    <hr>
+
+                    <h4>Prescription</h4>
+                    ${data[i]["prescription"]}
+                </div>
+            </div>`;
+
+                $("#main_content_view_history").html($("#main_content_view_history").html() + temp);
+                }
+            });
         });
     </script>
 

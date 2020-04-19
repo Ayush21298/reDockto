@@ -88,7 +88,7 @@
                     </div>
                     <hr> -->
                 </div>
-                <div class="profile_btn doctopad_button" onclick="alert('Appointment Added Succesfully !')">Add</div>
+                <div class="profile_btn doctopad_button" onclick="add_appointment()">Add</div>
             </div>
 
         </div>
@@ -106,32 +106,48 @@
             reload();
 
             var fields = [ 
-                            ["Patient ID", "text"],
-                            ["Date", "date"],
-                            ["Start Time", "time"],
-                            ["End Time", "time"],
+                            ["Date", "date_in", "date"],
+                            ["Start Time", "start_time_in", "time"],
+                            ["End Time", "end_time_in", "time"],
+                            ["Description", "description_in", "text"]
                         ];
 
             for (var i = 0; i < fields.length; i++) {
                 var ss = '<h4>{0}</h4>\
                     <div>\
-                        <input type="{1}" style="width : 100%;" name="{0}" id="{0}" placeholder="{0}">\
+                        <input type="{1}" style="width : 100%;" name="{2}" id="{2}" placeholder="{0}">\
                     </div>\
-                    <hr>'.format(fields[i][0], fields[i][1]);
+                    <hr>'.format(fields[i][0], fields[i][2], fields[i][1]);
 
                 $("#add_patient_div").html($("#add_patient_div").html() + ss);
             }
         });
 
-        $(".therapy_upload_button").click(function(){
-            var temp_title = $("#therapy_title_in").val();
-            var temp_url = $("#therapy_url_in").val();
-            var temp_description = $("#therapy_description_in").val();
+        function add_appointment(){
 
-            var temp_res = "Prescription Added Succesfully";
+            var temp_date = $("#date_in").val();
+            var temp_start_time = $("#start_time_in").val();
+            var temp_end_time = $("#end_time_in").val();
+            var temp_description = $("#description_in").val();
 
-            alert(temp_res);
-        });
+
+            $.post(appointment_add_url,
+            {
+                "date" : temp_date,
+                "start_time" : temp_start_time,
+                "end_time" : temp_end_time,
+                "description" : temp_description,
+                "phone_no" : getCookie("phone_no")
+            },
+            function(data, status){
+
+                // alert(JSON.stringify(data));
+
+                alert('Appointment Added Succesfully !');
+                window.location = "appointment_doctor.html";
+
+            });
+        }
     </script>
 
     <script type="text/javascript" src="cordova.js"></script>

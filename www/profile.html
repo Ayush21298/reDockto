@@ -81,7 +81,7 @@
                     <input type="text" name="name" id="name" placeholder="Full Name" class="profile_input">
                     <input type="text" name="phone_no" id="phone_no" placeholder="Phone No. : 9999999999" class="wallet_input" disabled="">
                     <input type="email" name="email" id="email" placeholder="Email : abc@xyz.com" class="profile_input">
-                    <input type="text" name="dob" id="dob" placeholder="DOB : DD/MM/YYYY" class="profile_input">
+                    <!-- <input type="date" name="dob" id="dob" placeholder="DOB : DD/MM/YYYY" class="profile_input"> -->
                     <input type="text" name="profession" id="profession" placeholder="Profession : Student" class="profile_input">
                     <input type="text" name="wallet" id="wallet" placeholder="Wallet Balance : &#8377; 0.00" class="wallet_input" disabled="">
                     <div class="profile_btn view_history_button">View History</div>
@@ -104,7 +104,7 @@
                 $("#phone_no").val("Phone No. : "+getCookie("phone_no"));
                 $("#name").val("Full Name : "+getCookie("name"));
                 $("#email").val("Email : "+getCookie("email"));
-                $("#dob").val("DOB : "+getCookie("dob"));
+                // $("#dob").val("DOB : "+getCookie("dob"));
                 $("#profession").val("Profession : "+getCookie("profession"));
                 $("#wallet").val("Wallet Balance : ₹ "+getCookie("wallet"));
             }
@@ -118,12 +118,47 @@
             reload();
         });
         $(".edit_profile_button").click(function() {
+            $("#phone_no").val(getCookie("phone_no"));
+            $("#name").val(getCookie("name"));
+            $("#email").val(getCookie("email"));
+            // $("#dob").val("DOB : "+getCookie("dob"));
+            $("#profession").val(getCookie("profession"));
             $(".profile_btn").toggle();
             $(".profile_input").prop('disabled',false);
         });
         $(".save_profile_button").click(function() {
-            $(".profile_btn").toggle();
-            $(".profile_input").prop('disabled',true);
+
+            var temp_name = $("#name").val();
+            var temp_email = $("#email").val();
+            // var temp_dob = $("#dob").val();
+            var temp_profession = $("#profession").val();
+
+            $.post(user_update_url,
+            {
+            "phone_no" : getCookie("phone_no"),
+            "name" : temp_name,
+            "email_id" : temp_email,
+            // "dob" : temp_dob,
+            "profession" : temp_profession
+            },
+            function(data, status){
+                if(data["status"] != "Failed"){
+                    setCookie("phone_no", data["phone_no"], 30);
+                    setCookie("name", data["name"], 30);
+                    setCookie("email", data["email_id"], 30);
+                    setCookie("dob", data["dob"], 30);
+                    setCookie("profession", data["profession"], 30);
+                    setCookie("wallet", data["wallet"], 30);
+                    setCookie("doctor", data["doctor"], 30);
+                    setCookie("address", data["address"], 30);
+                    alert("Profile Updated");
+                    $(".profile_btn").toggle();
+                    $(".profile_input").prop('disabled',true);
+                    reload();
+                } else {
+                    alert(data["response"]);
+                }
+            });
         });
         $(".recharge_button").click(function() {
             window.location = 'recharge_wallet.html';

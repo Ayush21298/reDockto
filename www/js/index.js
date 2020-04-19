@@ -89,3 +89,31 @@ String.prototype.format = function () {
         }
         return a
     }
+
+// var base_url = "http://127.0.0.1:8000/";
+var base_url = "http://192.168.43.156:8000/";
+
+var user_sign_in_url = base_url + "user/login/";
+var user_register_url = base_url + "user/register/";
+var user_update_url = base_url + "user/update/";
+
+var video_get_url = base_url + "video/all/";
+var video_upload_url = base_url + "video/upload/";
+
+var therapy_get_url = base_url + "therapy/all/";
+var therapy_upload_url = base_url + "therapy/upload/";
+
+var audio_book_get_url = base_url + "audio_book/all/";
+var audio_book_upload_url = base_url + "audio_book/upload/";
+
+var expert_opinion_get_url = base_url + "expert_opinion/all/";
+var expert_opinion_upload_url = base_url + "expert_opinion/upload/";
+
+var doctor_get_url = base_url + "doctor/all/";
+
+var patient_history_url = base_url + "counselling/patient/";
+
+var appointment_view_url = base_url + "appointment/view/";
+var appointment_add_url = base_url + "appointment/add/";
+
+var doctor_history_url = base_url + "counselling/doctor/";

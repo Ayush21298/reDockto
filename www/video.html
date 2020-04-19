@@ -73,7 +73,7 @@
         </div><!-- /footer -->
 
 
-        <div class="main_content">
+        <div class="main_content" id="main_content_video">
             
             <div class="video_container">
                 <div class="video_thumbnail">
@@ -87,33 +87,36 @@
                 </div>
             </div>
 
-            <div class="video_container">
-                <div class="video_thumbnail">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/r06uBlw0zj4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video_description">
-                    <h4>Testing Video 2</h4>
-                    <p><small>
-                        This is video 2 for testing.
-                    </p></small>
-                </div>
-            </div>
-
-            <div class="video_container">
-                <div class="video_thumbnail">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/r06uBlw0zj4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video_description">
-                    <h4>Testing Video 3</h4>
-                    <p><small>
-                        This is video 3 for testing.
-                    </p></small>
-                </div>
-            </div>
-
         </div>
 
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#main_content_video").html("");
+
+            $.get(video_get_url,
+            {},
+            function(data, status){
+                for (var i = 0; i < data.length ; i++) {
+                    var temp = `<div class="video_container">
+                <div class="video_thumbnail">
+                    <iframe width="100%" height="100%" src="${data[i]["url"]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video_description">
+                    <h4>${data[i]["title"]}</h4>
+                    <p><small>
+                        ${data[i]["description"]}
+                    </p></small>
+                </div>
+            </div>`;
+
+                $("#main_content_video").html($("#main_content_video").html() + temp);
+                }
+            });
+        });
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

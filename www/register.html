@@ -78,6 +78,16 @@
                     <input type="text" name="phone_in" id="phone_in" placeholder="Phone No. : 9999999999" class="sign_in_input">
                     <input type="password" name="password_in" id="password_in" placeholder="Password" class="sign_in_input">
                     <input type="password" name="password_in2" id="password_in2" placeholder="Confirm Password" class="sign_in_input">
+                    <label for="doctor_user">Choose a role:</label>
+
+                    <select id="doctor_user_in" class="sign_in_input">
+                      <option value="doctor">Doctor</option>
+                      <option value="patient" selected>User</option>
+                    </select> 
+
+                    <input type="number" name="experience_in" id="experience_in" placeholder="Experience (in yrs) (doctor)" class="sign_in_input">
+
+                    <input type="number" name="rate_in" id="rate_in" placeholder="Rate (&#8377; per Hr) (doctor)" class="sign_in_input">
                 </div>
                 <div class="profile_btn register_button">Register</div>
                 <center><p>OR</p></center>
@@ -110,6 +120,9 @@
             var temp_phone = $("#phone_in").val();
             var temp_pass = $("#password_in").val();
             var temp_pass2 = $("#password_in2").val();
+            var temp_doctor_user = $("#doctor_user_in").val();
+            var temp_experience = $("#experience_in").val();
+            var temp_rate = $("#rate_in").val();
 
             if(temp_pass == temp_pass2){
                 $(".sign_in_container").hide();
@@ -125,13 +138,35 @@
             var temp_phone = $("#phone_in").val();
             var temp_pass = $("#password_in").val();
             var temp_pass2 = $("#password_in2").val();
+            var temp_doctor_user = $("#doctor_user_in").val();
+            var temp_experience = $("#experience_in").val();
+            var temp_rate = $("#rate_in").val();
 
             var temp_otp = $("#otp_in").val();
 
             if(temp_otp == "0000"){
-                alert("Registration Successfull");
-                setCookie("phone_no", temp_phone, 30);
-                window.location = 'sign_in.html';    
+                $.post(user_register_url,
+                {
+                "phone_no": temp_phone,
+                "password": temp_pass,
+                "doctor": temp_doctor_user,
+                "experience": temp_experience,
+                "rate": temp_rate
+                },
+                function(data, status){
+                    if(data["status"] != "Failed"){
+                        // setCookie("phone_no", temp_phone, 30);
+                        // setCookie("name", "Ayush Patel", 30);
+                        // setCookie("email", "patel.ayush08@gmail.com", 30);
+                        // setCookie("dob", "02/12/1998", 30);
+                        // setCookie("profession", "Student", 30);
+                        // setCookie("wallet", "0.0", 30);
+                        alert("Registration Successfull");
+                        window.location = 'sign_in.html';  
+                    } else {
+                        alert(data["response"]);
+                    }
+                });
             } else {
                 alert("Wrong OTP");
             }

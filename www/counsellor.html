@@ -72,9 +72,9 @@
             </center>
         </div><!-- /footer -->
 
-        <div class="main_content">
+        <div class="main_content" id="main_content_counsellor">
             
-            <div class="counsellor_container">
+            <!-- <div class="counsellor_container">
                 <div class="counsellor_pic">
                     <img src="img/profile.png">
                     <div class="availibility">
@@ -92,18 +92,15 @@
                     <b>Experience</b> : 10 yrs (240 patients)<br>
                     <b>Rate (per hr.)</b> : ₹ 999.00<br>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="counsellor_container">
+            <!-- <div class="counsellor_container">
                 <div class="counsellor_pic">
                     <img src="img/profile.png">
                     <div class="availibility">
                         <div class="busy"></div>
                         Busy
                     </div>
-                    <!-- <div class="call_btn">
-                        <i class="fa fa-phone"> Call Now</i>
-                    </div> -->
                 </div>
                 <div class="counsellor_info">
                     <h4>Mr/s. Counsellor 2</h4>
@@ -121,9 +118,6 @@
                         <div class="queue"></div>
                         In Queue
                     </div>
-                    <!-- <div class="call_btn">
-                        <i class="fa fa-phone"> Call Now</i>
-                    </div> -->
                 </div>
                 <div class="counsellor_info">
                     <h4>Mr/s. Counsellor 3</h4>
@@ -132,11 +126,46 @@
                     <b>Experience</b> : 10 yrs (240 patients)<br>
                     <b>Rate (per hr.)</b> : ₹ 999.00<br>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#main_content_counsellor").html("");
+
+            $.get(doctor_get_url,
+            {},
+            function(data, status){
+                for (var i = 0; i < data.length ; i++) {
+                    var temp = `<div class="counsellor_container">
+                                    <div class="counsellor_pic">
+                                        <img src="img/profile.png">
+                                        <div class="availibility">
+                                            <div class="available"></div>
+                                            Available
+                                        </div>
+                                        <div class="call_btn">
+                                            <i class="fa fa-phone" onclick="alert('Will be integrated after backend !'); window.location='counsellor_feedback.html';"> Call Now</i>
+                                        </div>
+                                    </div>
+                                    <div class="counsellor_info">
+                                        <h4>${data[i]["name"]}</h4>
+                                        <b>Location</b> : ${data[i]["address"]}<br>
+                                        <b>Eligibility</b> : ${data[i]["profession"]}<br>
+                                        <b>Experience (yr.)</b> : ${data[i]["experience"]}<br>
+                                        <b>Rate (per hr.)</b> : ₹ ${data[i]["rate"]}<br>
+                                    </div>
+                                </div>`;
+
+                $("#main_content_counsellor").html($("#main_content_counsellor").html() + temp);
+                }
+            });
+        });
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

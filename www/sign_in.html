@@ -101,17 +101,28 @@
             var temp_phone = $("#phone_in").val();
             var temp_pass = $("#password_in").val();
 
-            if(temp_phone == temp_pass){
-                setCookie("phone_no", temp_phone, 30);
-                setCookie("name", "Ayush Patel", 30);
-                setCookie("email", "patel.ayush08@gmail.com", 30);
-                setCookie("dob", "02/12/1998", 30);
-                setCookie("profession", "Student", 30);
-                setCookie("wallet", "0.0", 30);
-                reload();    
-            } else {
-                alert("Invalid Credentials");
-            }
+            $.post(user_sign_in_url,
+            {
+            "phone_no": temp_phone,
+            "password": temp_pass
+            },
+            function(data, status){
+                if(data["status"] != "Failed"){
+                    setCookie("phone_no", data["phone_no"], 30);
+                    setCookie("name", data["name"], 30);
+                    setCookie("email", data["email_id"], 30);
+                    setCookie("dob", data["dob"], 30);
+                    setCookie("profession", data["profession"], 30);
+                    setCookie("wallet", data["wallet"], 30);
+                    setCookie("doctor", data["doctor"], 30);
+                    setCookie("address", data["address"], 30);
+                    alert("Succesfully Signed In");
+                    reload();
+                } else {
+                    alert(data["response"]);
+                }
+            });
+            reload();    
             
         });
         $(".register_button").click(function() {

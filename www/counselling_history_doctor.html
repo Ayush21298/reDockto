@@ -141,88 +141,8 @@
 
             <center><h3>Counselling History</h3></center>
             
-            <div class="history_container">
-                <div>
-                    <h4>Today</h4>
-                    <table>
-                        <tr>
-                            <th>Total Customer Count</th>
-                            <td> : 1</td>
-                        </tr>
-                        <tr>
-                            <th>Total Time Spent</th>
-                            <td> : 60 min</td>
-                        </tr>
-                        <tr>
-                            <th>Total Amount Earned</th>
-                            <td> : ₹ 900.00</td>
-                        </tr>
-                    </table>
-
-                </div>
-            </div>
-
-            <div class="history_container">
-                <div>
-                    <h4>This Week</h4>
-                    <table>
-                        <tr>
-                            <th>Total Customer Count</th>
-                            <td> : 4</td>
-                        </tr>
-                        <tr>
-                            <th>Total Time Spent</th>
-                            <td> : 360 min</td>
-                        </tr>
-                        <tr>
-                            <th>Total Amount Earned</th>
-                            <td> : ₹ 5400.00</td>
-                        </tr>
-                    </table>
-
-                </div>
-            </div>
-
-            <div class="history_container">
-                <div>
-                    <h4>This Month</h4>
-                    <table>
-                        <tr>
-                            <th>Total Customer Count</th>
-                            <td> : 16</td>
-                        </tr>
-                        <tr>
-                            <th>Total Time Spent</th>
-                            <td> : 3000 min</td>
-                        </tr>
-                        <tr>
-                            <th>Total Amount Earned</th>
-                            <td> : ₹ 45000.00</td>
-                        </tr>
-                    </table>
-
-                </div>
-            </div>
-
-            <div class="history_container">
-                <div>
-                    <h4>This Year</h4>
-                    <table>
-                        <tr>
-                            <th>Total Customer Count</th>
-                            <td> : 100</td>
-                        </tr>
-                        <tr>
-                            <th>Total Time Spent</th>
-                            <td> : 30000 min</td>
-                        </tr>
-                        <tr>
-                            <th>Total Amount Earned</th>
-                            <td> : ₹ 450000.00</td>
-                        </tr>
-                    </table>
-
-                </div>
+            <div id="history_stats_1">
+                
             </div>
 
         </div>
@@ -236,8 +156,106 @@
             }
         }
 
+        function update_history(){
+
+            $("#history_stats_1").html("");
+
+            $.get(doctor_history_url,
+            {"phone_no" : getCookie("phone_no")},
+            function(data, status){
+                    var temp = `<div class="history_container">
+                                    <div>
+                                        <h4>Today</h4>
+                                        <table>
+                                            <tr>
+                                                <th>Total Customer Count</th>
+                                                <td> : ${data["day"]["count"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Time Spent</th>
+                                                <td> : ${data["day"]["time"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Amount Earned</th>
+                                                <td> : ₹ ${data["day"]["amount"]}</td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                                <div class="history_container">
+                                    <div>
+                                        <h4>This Week</h4>
+                                        <table>
+                                            <tr>
+                                                <th>Total Customer Count</th>
+                                                <td> : ${data["week"]["count"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Time Spent</th>
+                                                <td> : ${data["week"]["time"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Amount Earned</th>
+                                                <td> : ₹ ${data["week"]["amount"]}</td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                                <div class="history_container">
+                                    <div>
+                                        <h4>This Month</h4>
+                                        <table>
+                                            <tr>
+                                                <th>Total Customer Count</th>
+                                                <td> : ${data["month"]["count"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Time Spent</th>
+                                                <td> : ${data["month"]["time"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Amount Earned</th>
+                                                <td> : ₹ ${data["month"]["amount"]}</td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                                <div class="history_container">
+                                    <div>
+                                        <h4>This Year</h4>
+                                        <table>
+                                            <tr>
+                                                <th>Total Customer Count</th>
+                                                <td> : ${data["year"]["count"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Time Spent</th>
+                                                <td> : ${data["year"]["time"]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Amount Earned</th>
+                                                <td> : ₹ ${data["year"]["amount"]}</td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>`;
+
+                $("#history_stats_1").html(temp);
+            });
+
+
+        }
+
         $(document).ready(function() {
             reload();
+            update_history();
         });
 
         $(".call_connect").click(function() {

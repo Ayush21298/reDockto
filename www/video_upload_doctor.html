@@ -84,19 +84,19 @@
                 <div>
                     <h4>Title</h4>
                     <div>
-                        <input type="text" name="therapy_title_in" id="therapy_title_in" placeholder="Title : Basic Video">
+                        <input type="text" name="video_title_in" id="video_title_in" placeholder="Title : Basic Video">
                     </div>
                     <hr>
                     <h4>URL</h4>
                     <div>
-                        <input type="text" name="therapy_url_in" id="therapy_url_in" placeholder="URL : http://abc.xyz/pqr">
+                        <input type="text" name="video_url_in" id="video_url_in" placeholder="URL : http://abc.xyz/pqr">
                     </div>
                     <hr>
                     <h4>Description</h4>
                     <div>
-                        <textarea name="therapy_description_in" id="therapy_description_in" placeholder="ABC"></textarea>
+                        <textarea name="video_description_in" id="video_description_in" placeholder="ABC"></textarea>
                     </div>
-                    <div class="profile_btn therapy_upload_button">Upload</div>
+                    <div class="profile_btn video_upload_button">Upload</div>
                 </div>
             </div>
 
@@ -115,12 +115,23 @@
             reload();
         });
 
-        $(".therapy_upload_button").click(function(){
-            var temp_title = $("#therapy_title_in").val();
-            var temp_url = $("#therapy_url_in").val();
-            var temp_description = $("#therapy_description_in").val();
+        $(".video_upload_button").click(function(){
+            var temp_title = $("#video_title_in").val();
+            var temp_url = $("#video_url_in").val();
+            var temp_description = $("#video_description_in").val();
 
-            var temp_res = "Upload Request Added\
+
+            $.post(video_upload_url,
+            {
+                "title" : temp_title,
+                "url" : temp_url,
+                "description" : temp_description,
+                "author" : getCookie("phone_no"),
+                "uploader" : getCookie("phone_no")
+            },
+            function(data, status){
+                
+                var temp_res = "Upload Request Added\
                             \
                             { Title : {0}, \
                             \
@@ -131,7 +142,9 @@
                             Current Status : Pending for Approval\
                             ".format(temp_title, temp_url, temp_description);
 
-            alert(temp_res);
+                alert(temp_res);
+
+            });
         });
     </script>
 

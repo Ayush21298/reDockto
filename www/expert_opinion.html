@@ -77,15 +77,15 @@
           <!-- <h2>Carousel Example</h2>   -->
           <div id="myCarousel" class="carousel slide">
             <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <ol class="carousel-indicators" id="carousel-indicators_1">
+              <!-- <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
               <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li> -->
             </ol>
 
             <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-              <div class="item active">
+            <div class="carousel-inner" id="carousel-inner_1">
+              <!-- <div class="item active">
                 <img src="img/la.jpg" alt="Los Angeles" class="carousel-img">
               </div>
 
@@ -95,7 +95,7 @@
             
               <div class="item">
                 <img src="img/ny.jpg" alt="New york" class="carousel-img">
-              </div>
+              </div> -->
             </div>
 
             <!-- Left and right controls -->
@@ -111,6 +111,46 @@
           </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#carousel-indicators_1").html("");
+            $("#carousel-inner_1").html("");
+
+            $.get(expert_opinion_get_url,
+            {},
+            function(data, status){
+                for (var i = 0; i < data.length ; i++) {
+                    
+                  var temp1 = "";
+                  var temp2 = "";
+
+                  if(i==0) {
+
+                    temp1 = `<li data-target="#myCarousel" data-slide-to="${i}" class="active"></li>`;
+
+                    temp2 = `<div class="item active">
+                              <img src="${data[i]["url"]}" alt="${data[i]["title"]}" class="carousel-img">
+                            </div>`;
+
+                  } else {
+
+                    temp1 = `<li data-target="#myCarousel" data-slide-to="${i}"></li>`;
+
+                    temp2 = `<div class="item">
+                              <img src="${data[i]["url"]}" alt="${data[i]["title"]}" class="carousel-img">
+                            </div>`;
+
+                  }
+
+                  $("#carousel-indicators_1").html( $("#carousel-indicators_1").html() + temp1 );
+                  $("#carousel-inner_1").html( $("#carousel-inner_1").html() + temp2 );
+
+                }
+            });
+        });
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

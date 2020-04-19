@@ -93,7 +93,7 @@
                     <h4 id = "date_date"></h4>
                     <hr>
 
-                    <table width="100%">
+                    <table width="100%" id="history_table">
                         <thead>
                             <th>Start Time</th>
                             <th>End Time</th>
@@ -104,19 +104,13 @@
                             <td>14:00 hr</td>
                             <td>Patient ID : 021298</td>
                         </tr>
-                        <tr>
-                            <td>13:00 hr</td>
-                            <td>14:00 hr</td>
-                            <td>Patient ID : 021298</td>
-                        </tr>
-                        <tr>
-                            <td>13:00 hr</td>
-                            <td>14:00 hr</td>
-                            <td>Patient ID : 021298</td>
-                        </tr>
                     </table>
 
                 </div>
+            </div>
+
+            <div class="history_container">
+                <div class="profile_btn doctopad_button" onclick="window.location = 'add_appointment.html'">Add Appointment</div>
             </div>
 
         </div>
@@ -124,6 +118,34 @@
     </div>
 
     <script type="text/javascript">
+        function get_appointments(){
+            var temp_table = `<thead>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Description</th>
+                        </thead>`;
+            $("#history_table").html(temp_table);
+
+            var temp_date = $( "#datepicker" ).datepicker('getDate').toLocaleDateString();
+
+            $.get(appointment_view_url,
+            {
+                "phone_no" : getCookie("phone_no"),
+                "datetime" : temp_date
+            },
+            function(data, status){
+                for (var i = 0; i < data.length ; i++) {
+                    var temp = `<tr>
+                            <td>${data[i]["start_time"]}</td>
+                            <td>${data[i]["end_time"]}</td>
+                            <td>${data[i]["description"]}</td>
+                        </tr>`;
+
+                $("#history_table").html($("#history_table").html() + temp);
+                }
+            });
+        }
+
         function reload(){
             if(getCookie("phone_no") == "") {
                 window.location = 'sign_in.html';
@@ -144,11 +166,13 @@
             $( "#datepicker" ).datepicker({
                                   dateFormat: "dd-mm-yyyy"
                                 });
+            get_appointments();
             load_date();
         });
 
         $( ".appointment_check_button" ).click(function(){
-            load_date()
+            load_date();
+            get_appointments();
         });
     </script>
 
