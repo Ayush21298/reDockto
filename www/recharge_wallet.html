@@ -107,12 +107,12 @@
                                         "currency": "INR",
                                         "name": "reDockto",
                                         "description": "Test Wallet Recharge",
-                                        "image": "img/logo.png",
+                                        "image": "https://home.redockto.com/img/logo.png",
                                         "order_id": order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                                         "handler": function (response){
                                             // alert(response.razorpay_payment_id);
                                             // alert(response.razorpay_order_id);
-                                            // alert(response.razorpay_signature)
+                                            // alert(response.razorpay_signature);
                                             $.post(payment_verify_url,
                                             {
                                                 "razorpay_payment_id" : response.razorpay_payment_id,
