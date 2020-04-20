@@ -139,3 +139,6 @@ var missed_call_url = base_url + "counselling/missed_call/";
 var start_call_url = base_url + "counselling/start_call/";
 var end_call_url = base_url + "counselling/end_call/";
 
+
+var admin_get_url = base_url + "user/admin/";
+
