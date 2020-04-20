@@ -18,6 +18,16 @@ let canvasContainer =document.getElementById("canvas-container");
  * @description Helper function to add the video stream to "remote-container"
  */
 function addVideoStream(streamId){
+
+    $.post(start_call_url,
+    {
+        "call_id" : call_id
+    },
+    function(data, status){
+        alert("Call Started");
+    });
+
+
     not_accepting = false;
     document.getElementById("calling_audio").pause();
     document.getElementById("calling_line").style.display = "none";
@@ -26,20 +36,36 @@ function addVideoStream(streamId){
     streamDiv.style.transform="rotateY(180deg)"; // Takes care of lateral inversion (mirror image)
     remoteContainer.appendChild(streamDiv);      // Add new div to container
 }
+
+function end_call (){
+    $.post(end_call_url,
+    {
+        "call_id" : call_id
+    },
+    function(data, status){
+        alert("Call Ended.");
+    });
+}
+
+
 /**
  * @name removeVideoStream
  * @param evt - Remove event
  * @description Helper function to remove the video stream from "remote-container"
  */
 function removeVideoStream (evt) {
+
+    end_call();
+
+
     let stream = evt.stream;
     stream.stop();
     let remDiv=document.getElementById(stream.getId());
     remDiv.parentNode.removeChild(remDiv);
     console.log("Remote stream is removed " + stream.getId());
     document.getElementById("ending_audio").play();
-    alert("Hope it did help. Please fill the feedback.");
-    window.location = "counsellor_feedback.html";
+    alert("Hope it did go well.");
+    window.location = "counselling_history_doctor.html";
 }
 
 function addCanvas(streamId){
@@ -120,7 +146,21 @@ setTimeout(function(){
     if(not_accepting == true){
         document.getElementById("calling_audio").pause();
         document.getElementById("ending_audio").play();
-        alert("Doctor seems to be busy.");
-        window.location = "counsellor.html";
+        alert("User seems to have left");
+        window.location = "counselling_history_doctor.html";
     }
  }, delay);
+
+function removeVideoStream_my () {
+
+    end_call();
+
+    document.getElementById("ending_audio").play();
+    alert("Hope it did go well.");
+    window.location = "counselling_history_doctor.html";
+}
+
+
+$("#end_call_btn").click(function(){
+    removeVideoStream_my();
+});

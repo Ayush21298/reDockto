@@ -129,7 +129,13 @@ var payment_verify_url = base_url + "payment/verify/";
 
 var doctor_phone_call = "NULL";
 var user_phone_call = "NULL";
+var call_id = null;
 
 
 var update_call_details_url = base_url + "counselling/add_call/";
+var get_call_url = base_url + "counselling/get_call/";
+var ignore_call_url = base_url + "counselling/ignore_call/";
+var missed_call_url = base_url + "counselling/missed_call/";
+var start_call_url = base_url + "counselling/start_call/";
+var end_call_url = base_url + "counselling/end_call/";
 
