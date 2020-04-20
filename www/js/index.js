@@ -92,7 +92,8 @@ String.prototype.format = function () {
     }
 
 // var base_url = "http://127.0.0.1:8000/";
-var base_url = "http://192.168.43.156:8000/";
+// var base_url = "http://192.168.43.156:8000/";
+var base_url = "http://3.21.187.90:8000/";
 
 var user_sign_in_url = base_url + "user/login/";
 var user_register_url = base_url + "user/register/";
