@@ -125,3 +125,11 @@ var doctor_history_url = base_url + "counselling/doctor/";
 
 var payment_create_url = base_url + "payment/create/";
 var payment_verify_url = base_url + "payment/verify/";
+
+
+var doctor_phone_call = "NULL";
+var user_phone_call = "NULL";
+
+
+var update_call_details_url = base_url + "counselling/add_call/";
+

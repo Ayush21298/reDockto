@@ -133,6 +133,31 @@
     </div>
 
     <script type="text/javascript">
+
+        function update_video_call_details(user_phone_call, doctor_phone_call){
+            $.post(update_call_details_url,
+            {
+                "user_phone_call" : user_phone_call,
+                "doctor_phone_call" : doctor_phone_call,
+                "call_type" : "video"
+            },
+            function(data, status){
+                 window.location='agora.html';
+            });
+        }
+
+        function update_audio_call_details(user_phone_call, doctor_phone_call){
+            $.post(update_call_details_url,
+            {
+                "user_phone_call" : user_phone_call,
+                "doctor_phone_call" : doctor_phone_call,
+                "call_type" : "audio"
+            },
+            function(data, status){
+                 window.location='agora.html';
+            });
+        }
+
         $(document).ready(function() {
 
             $("#main_content_counsellor").html("");
@@ -149,7 +174,11 @@
                                             Available
                                         </div>
                                         <div class="call_btn">
-                                            <i class="fa fa-phone" onclick="alert('Will be integrated after backend !'); window.location='user_call.html';"> Call Now</i>
+                                            <i class="fa fa-camera" onclick='user_phone_call=getCookie("phone_no"); doctor_phone_call=${data[i]["phone_no"]}; update_video_call_details(user_phone_call, doctor_phone_call);''> Video</i>
+                                        </div>
+                                        <br>
+                                        <div class="call_btn">
+                                            <i class="fa fa-phone" onclick='user_phone_call=getCookie("phone_no"); doctor_phone_call=${data[i]["phone_no"]}; update_video_call_details(user_audio_call, doctor_phone_call);''> Audio</i>
                                         </div>
                                     </div>
                                     <div class="counsellor_info">

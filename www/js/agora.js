@@ -3,6 +3,8 @@
  * @param err - error thrown by any function
  * @description Helper function to handle errors
  */
+var not_accepting = true;
+
 let handleFail = function(err){
     console.log("Error : ", err);
 };
@@ -16,6 +18,9 @@ let canvasContainer =document.getElementById("canvas-container");
  * @description Helper function to add the video stream to "remote-container"
  */
 function addVideoStream(streamId){
+    not_accepting = false;
+    document.getElementById("calling_audio").pause();
+    document.getElementById("calling_line").style.display = "none";
     let streamDiv=document.createElement("div"); // Create a new div for every stream
     streamDiv.id=streamId;                       // Assigning id to div
     streamDiv.style.transform="rotateY(180deg)"; // Takes care of lateral inversion (mirror image)
@@ -32,6 +37,9 @@ function removeVideoStream (evt) {
     let remDiv=document.getElementById(stream.getId());
     remDiv.parentNode.removeChild(remDiv);
     console.log("Remote stream is removed " + stream.getId());
+    document.getElementById("ending_audio").play();
+    alert("Hope it did help. Please fill the feedback.");
+    window.location = "counsellor_feedback.html";
 }
 
 function addCanvas(streamId){
@@ -69,12 +77,13 @@ let client = AgoraRTC.createClient({
 client.init("91c83a27c5a041f39ae242a3041f9e7e",() => console.log("AgoraRTC client initialized") ,handleFail);
 
 // The client joins the channel
-client.join(null,"any-channel",null, (uid)=>{
+channel_name = "call_"+user_phone_call+"_"+doctor_phone_call;
+client.join(null,channel_name,null, (uid)=>{
 
     // Stream object associated with your web cam is initialized
     let localStream = AgoraRTC.createStream({
         streamID: uid,
-        audio: false,
+        audio: true,
         video: true,
         screen: false
     });
@@ -105,3 +114,13 @@ client.on('stream-subscribed', function (evt) {
 //When a person is removed from the stream
 client.on('stream-removed',removeVideoStream);
 client.on('peer-leave',removeVideoStream);
+
+var delay = 30000; 
+setTimeout(function(){ 
+    if(not_accepting == true){
+        document.getElementById("calling_audio").pause();
+        document.getElementById("ending_audio").play();
+        alert("Doctor seems to be busy.");
+        window.location = "counsellor.html";
+    }
+ }, delay);

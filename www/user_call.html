@@ -66,30 +66,22 @@
 
     <script type="text/javascript">
 
-        // const peer = new Peer('sender', { host: 'localhost', port: 9000, path: '/' })
-        const peer = new Peer('sender', { host: '192.168.43.156', port: 8000, path: '/' })
+        // const peer = new Peer('receiver', { host: 'localhost', port: 9000, path: '/' })
+        const peer = new Peer('receiver', { host: '192.168.43.156', port: 8000, path: '/' })
 
-
-        const startChat = async () => {
-            alert("started")
-          const localStream = await navigator.mediaDevices.getUserMedia({
-            // video: true
-            'video':{
-                    facingMode: 'user'
-                }
-          })
-          alert("started2")
-          document.querySelector('video#local').srcObject = localStream
-          alert("calling")
-          const call = peer.call('receiver', localStream) 
-          alert("called") 
-
-          call.on('stream', remoteStream => {
-            alert("received")
-            document.querySelector('video#remote').srcObject = remoteStream
-          })
-        }
-        startChat()
+        peer.on('call', call => {
+          const startChat = async () => {
+            const localStream = await navigator.mediaDevices.getUserMedia({
+              video: true
+            })
+            document.querySelector('video#local').srcObject = localStream
+            call.answer(localStream)    
+            call.on('stream', remoteStream => {
+              document.querySelector('video#remote').srcObject = remoteStream
+            })
+          }  
+          startChat()
+        })
     </script>
 
     <script type="text/javascript">

@@ -60,26 +60,80 @@
 </head>
 
 <body>
-    <h1>
+    <!-- <h1>
     Video Call Counselling<br><small style="font-size: 14pt">Powered by reDockto</small>
-	</h1>
+	</h1> -->
 
-	<h4>Me</h4>
+	<!-- <h4>Me</h4> -->
 	<div id="me"></div>
 
-	<h4>Counsellor</h4>
+	<!-- <h4>Remote</h4> -->
 	<div id="remote-container">
 
 	</div>
-	<h4>Canvas :</h4>
+	<!-- <h4>Canvas :</h4> -->
 	<div id="canvas-container">
 
 	</div>
 
-	<script src="js/AgoraRTCSDK-2.4.0.js"></script>
-	<script src="js/agora.js"></script>
+    <div id="calling_line">
+        <h1><blink>Calling ...</blink></h1>
+    </div>
+
+    <audio controls loop autoplay="true" id="calling_audio">
+      <source src="audio/ringtone.ogg" type="audio/ogg">
+      <source src="audio/ringtone.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio> 
+
+    <audio controls id="ending_audio">
+      <source src="audio/end_of_call.ogg" type="audio/ogg">
+      <source src="audio/end_of_call.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio> 
+
+    <style type="text/css">
+        @keyframes blinker {
+          50% { opacity: 0.2; }
+        }
+
+        #remote-container {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        #me {
+            position: fixed;
+            width: 40vw;
+            height: 40vh;
+            bottom: 0;
+            right: 0;
+            background-color: #fff;
+            z-index: 10;
+        }
+
+        #calling_line {
+            z-index: 10;
+            color: #fff;
+            position: fixed;
+            width: 100vw;
+            text-align: center;
+            top: 20vh;
+            animation: blinker 2s linear infinite;
+        }
+
+        audio {
+            display: none;
+        }
+
+    </style>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+	<script src="js/AgoraRTCSDK-2.4.0.js"></script>
+	<script src="js/agora.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
