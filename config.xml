@@ -106,9 +106,23 @@
     <allow-navigation href="*ytimg*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="21" />
+        <preference name="android-targetSdkVersion" value="21" />
+        <config-file parent="/*" target="AndroidManifest.xml">
+        <uses-permission android:name="android.permission.RECORD_AUDIO" />
+        <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-feature android:name="android.hardware.camera" />
+        </config-file>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <config-file platform="ios" target="*-Info.plist" parent="NSCameraUsageDescription">
+            <string>Use camera for video calling</string>
+        </config-file>
+        <config-file platform="ios" target="*-Info.plist" parent="NSMicrophoneUsageDescription">
+            <string>Use microphone for video calling</string>
+        </config-file>
     </platform>
 </widget>
