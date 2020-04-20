@@ -42,6 +42,9 @@
     },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.redockto.userapp"
+    },
+    "phonegap-plugin-media-stream": {
+      "PACKAGE_NAME": "com.redockto.userapp"
     }
   },
   "dependent_plugins": {
@@ -49,6 +52,9 @@
       "PACKAGE_NAME": "com.redockto.userapp"
     },
     "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.redockto.userapp"
+    },
+    "es6-promise-plugin": {
       "PACKAGE_NAME": "com.redockto.userapp"
     }
   }

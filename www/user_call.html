@@ -73,7 +73,10 @@
         const startChat = async () => {
             alert("started")
           const localStream = await navigator.mediaDevices.getUserMedia({
-            video: true
+            // video: true
+            'video':{
+                    facingMode: 'user'
+                }
           })
           alert("started2")
           document.querySelector('video#local').srcObject = localStream
