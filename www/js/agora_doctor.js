@@ -21,7 +21,7 @@ function addVideoStream(streamId){
 
     $.post(start_call_url,
     {
-        "call_id" : call_id
+        "call_id" : getCookie("call_id")
     },
     function(data, status){
         alert("Call Started");
@@ -40,7 +40,7 @@ function addVideoStream(streamId){
 function end_call (){
     $.post(end_call_url,
     {
-        "call_id" : call_id
+        "call_id" : getCookie("call_id")
     },
     function(data, status){
         alert("Call Ended.");
@@ -103,7 +103,8 @@ let client = AgoraRTC.createClient({
 client.init("91c83a27c5a041f39ae242a3041f9e7e",() => console.log("AgoraRTC client initialized") ,handleFail);
 
 // The client joins the channel
-channel_name = "call_"+user_phone_call+"_"+doctor_phone_call;
+channel_name = "call_"+getCookie("user_phone_call")+"_"+getCookie("doctor_phone_call")+"_"+getCookie("call_id");
+alert(channel_name);
 client.join(null,channel_name,null, (uid)=>{
 
     // Stream object associated with your web cam is initialized

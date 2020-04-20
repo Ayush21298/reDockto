@@ -127,8 +127,8 @@ var payment_create_url = base_url + "payment/create/";
 var payment_verify_url = base_url + "payment/verify/";
 
 
-var doctor_phone_call = "NULL";
-var user_phone_call = "NULL";
+var doctor_phone_call = null;
+var user_phone_call = null;
 var call_id = null;
 
 

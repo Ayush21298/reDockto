@@ -134,28 +134,29 @@
 
     <script type="text/javascript">
 
-        function update_video_call_details(user_phone_call, doctor_phone_call){
+        function update_video_call_details(){
             $.post(update_call_details_url,
             {
-                "user_phone_call" : user_phone_call,
-                "doctor_phone_call" : doctor_phone_call,
+                "user_phone_call" : getCookie("user_phone_call"),
+                "doctor_phone_call" : getCookie("doctor_phone_call"),
                 "call_type" : "video"
             },
             function(data, status){
-                 call_id=data["id"]; 
-                 window.location='agora.html';
+                setCookie("call_id",data["id"]);
+                window.location='agora_user.html';
             });
         }
 
-        function update_audio_call_details(user_phone_call, doctor_phone_call){
+        function update_audio_call_details(){
             $.post(update_call_details_url,
             {
-                "user_phone_call" : user_phone_call,
-                "doctor_phone_call" : doctor_phone_call,
+                "user_phone_call" : getCookie("user_phone_call"),
+                "doctor_phone_call" : getCookie("doctor_phone_call"),
                 "call_type" : "audio"
             },
             function(data, status){
-                 window.location='agora.html';
+                setCookie("call_id",data["id"]);
+                window.location='agora_user.html';
             });
         }
 
@@ -175,11 +176,11 @@
                                             Available
                                         </div>
                                         <div class="call_btn">
-                                            <i class="fa fa-camera" onclick='user_phone_call=getCookie("phone_no"); doctor_phone_call=${data[i]["phone_no"]}; update_video_call_details(user_phone_call, doctor_phone_call);''> Video</i>
+                                            <i class="fa fa-camera" onclick='setCookie("user_phone_call",getCookie("phone_no")); setCookie("doctor_phone_call",${data[i]["phone_no"]}); update_video_call_details();''> Video</i>
                                         </div>
                                         <br>
                                         <div class="call_btn">
-                                            <i class="fa fa-phone" onclick='user_phone_call=getCookie("phone_no"); doctor_phone_call=${data[i]["phone_no"]}; update_video_call_details(user_audio_call, doctor_phone_call);''> Audio</i>
+                                            <i class="fa fa-phone" onclick='setCookie("user_phone_call",getCookie("phone_no")); setCookie("doctor_phone_call",${data[i]["phone_no"]}); update_audio_call_details();''> Audio</i>
                                         </div>
                                     </div>
                                     <div class="counsellor_info">
