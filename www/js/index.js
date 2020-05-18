@@ -191,6 +191,71 @@ $(document).ready(function(){
         </div>`
 
   $(".slide_window").html(slide_window);
+
+  $(".footer").html("");
+
+  var url = (window.location.pathname).split('/')
+  url = url[url.length-1];
+
+  if(url == 'wallet.html') {
+    var footer = `
+          <div>
+              <a class="active" onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
+              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+          </div>`
+
+    $(".footer").html(footer);
+  } else if(url == 'video.html') {
+    var footer = `
+          <div>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
+              <a class="active" onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
+              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+          </div>`
+
+    $(".footer").html(footer);
+  } else if(url == 'counsellor.html') {
+    var footer = `
+          <div>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
+              <a class="active" onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
+              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+          </div>`
+
+    $(".footer").html(footer);
+  } else if(url == 'view_history.html') {
+    var footer = `
+          <div>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
+              <a class="active" onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
+              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+          </div>`
+
+    $(".footer").html(footer);
+  } else if(url == 'profile.html') {
+    var footer = `
+          <div>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
+              <a class="active" onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+          </div>`
+
+    $(".footer").html(footer);
+  }
+
+  
+
 });
 
 function footer_btn_back(argument) {

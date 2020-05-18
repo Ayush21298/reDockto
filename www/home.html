@@ -197,9 +197,11 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            // if(getCookie("phone_no") == "") {
-            //     window.location = 'sign_in.html';
-            // }
+            if(getCookie("phone_no") == "") {
+                window.location = 'sign_in.html';
+            } else {
+                setTimeout(function(){ window.location = 'counsellor.html'; }, 0);
+            }
         });
     </script>
 
