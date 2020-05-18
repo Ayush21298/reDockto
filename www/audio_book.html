@@ -58,33 +58,64 @@
 </head>
 
 <body>
+    <div class="slide_window">
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home.html'">
+                Goto User Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'home_doctor.html'">
+                Goto Doctor Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'admin.html'">
+                Goto Admin Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
+        </div>
+    </div>
     <div data-role="page">
 
         <div data-role="header" class="header">
             <center>
-                <div class="goto_home" onclick="window.location='home.html';">
-                    <i class="fa fa-home"></i>
+                <div class="goto_home">
+                    <i class="fa fa-bars"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
                 <div class="sos_btn">
-                    SOS <i class="fa fa-ambulance"></i>
+                    Instant<br>Support
                 </div>
             </center>
         </div><!-- /footer -->
 
 
+
+        <div data-role="footer" class="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li id="footer_btn_back" onclick="footer_btn_back()"><a href="#"><i class="fa fa-angle-left navbar_btn"></i></a></li>
+                    <!-- <li><a href="#" class="ui-btn-active"><i class="fa fa-home navbar_btn"></i></a></li> -->
+                    <li id="footer_btn_home" onclick="footer_btn_home()"><a href="#"><i class="fa fa-home navbar_btn"></i></a></li>
+                    <li id="footer_btn_next" onclick="footer_btn_next()"><a href="#"><i class="fa fa-angle-right navbar_btn"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
         <div class="main_content" id="main_content_video">
             
-            <div class="video_container">
-                <div class="video_thumbnail">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/r06uBlw0zj4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video_description">
-                    <h4>Testing Video 1</h4>
-                    <p><small>
-                        This is video 1 for testing.
-                    </p></small>
-                </div>
+            <div class="history_container">
+                
             </div>
 
         </div>
@@ -93,28 +124,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-
-            $("#main_content_video").html("");
-
-            $.get(audio_book_get_url,
-            {},
-            function(data, status){
-                for (var i = 0; i < data.length ; i++) {
-                    var temp = `<div class="video_container">
-                <div class="video_thumbnail">
-                    <iframe width="100%" height="100%" src="${data[i]["url"]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video_description">
-                    <h4>${data[i]["title"]}</h4>
-                    <p><small>
-                        ${data[i]["description"]}
-                    </p></small>
-                </div>
-            </div>`;
-
-                $("#main_content_video").html($("#main_content_video").html() + temp);
-                }
-            });
+            var ref = window.open(encodeURI('https://www.amazon.in/b?node=1634753031&ref=kindlecontentin37-21&tag=kindlecontentin37-21&ext_vrnc=hi&gclid=CjwKCAjw1v_0BRAkEiwALFkj5s8MVa0Oh_HL8KBt4OTlnibcLySY541ld5u78nMByxO_w05kczoASxoCREwQAvD_BwE&nocache=1587556975711'), '_self', 'location=yes');
         });
     </script>
 

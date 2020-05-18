@@ -58,12 +58,39 @@
 </head>
 
 <body>
+    <div class="slide_window">
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home.html'">
+                Goto User Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'home_doctor.html'">
+                Goto Doctor Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'admin.html'">
+                Goto Admin Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
+        </div>
+    </div>
     <div data-role="page">
 
         <div data-role="header" class="header">
             <center>
-                <div class="goto_home" onclick="window.location='home_doctor.html';">
-                    <i class="fa fa-home"></i>
+                <div class="goto_home">
+                    <i class="fa fa-bars"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
                 <div class="available_toggle available_toggle_on">
@@ -74,6 +101,18 @@
                 </div>
             </center>
         </div><!-- /footer -->
+
+        
+        <div data-role="footer" class="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li id="footer_btn_back" onclick="footer_btn_back()"><a href="#"><i class="fa fa-angle-left navbar_btn"></i></a></li>
+                    <!-- <li><a href="#" class="ui-btn-active"><i class="fa fa-home navbar_btn"></i></a></li> -->
+                    <li id="footer_btn_home" onclick="footer_btn_home()"><a href="#"><i class="fa fa-home navbar_btn"></i></a></li>
+                    <li id="footer_btn_next" onclick="footer_btn_next()"><a href="#"><i class="fa fa-angle-right navbar_btn"></i></a></li>
+                </ul>
+            </div>
+        </div>
 
         <div class="main_content">
             <div class="profile_container">

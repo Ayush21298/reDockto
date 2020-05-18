@@ -1,0 +1,210 @@
+.mediaViewInfo {
+	--web-view-name: Loading screen;
+	--web-view-id: Loading_screen;
+	--web-scale-on-resize: true;
+	--web-center-vertically: true;
+	--web-enable-deep-linking: true;
+}
+:root {
+	--web-view-ids: Loading_screen;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+#Loading_screen {
+	position: absolute;
+	transform: translateY(-50%);
+	top: 50%;
+	width: 375px;
+	height: 812px;
+	background-color: rgba(241,196,14,1);
+	overflow: hidden;
+	--web-view-name: Loading screen;
+	--web-view-id: Loading_screen;
+	--web-scale-on-resize: true;
+	--web-center-vertically: true;
+	--web-enable-deep-linking: true;
+}
+@keyframes fadein {
+
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+
+}
+.as {
+	position: absolute;
+	overflow: visible;
+	width: 375px;
+	height: 812px;
+	left: 0px;
+	top: 0px;
+	--web-animation: fadein 0.3s ease-out;
+	--web-action-type: page;
+	--web-action-target: Onboarding_1.html;
+	cursor: pointer;
+}
+#Symbol_1___1 {
+	position: absolute;
+	width: 375px;
+	height: 104px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Status_Bar {
+	position: absolute;
+	width: 375px;
+	height: 44px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+.Rectangle {
+	position: absolute;
+	overflow: visible;
+	width: 375px;
+	height: 44px;
+	left: 0px;
+	top: 0px;
+}
+#Battery {
+	position: absolute;
+	width: 24.328px;
+	height: 11.333px;
+	left: 336px;
+	top: 17.333px;
+	overflow: visible;
+}
+#Border {
+	opacity: 0.35;
+}
+.Border {
+	position: absolute;
+	overflow: visible;
+	width: 22px;
+	height: 11.333px;
+	left: 0px;
+	top: 0px;
+}
+#Cap {
+	opacity: 0.4;
+}
+.Cap {
+	overflow: visible;
+	position: absolute;
+	width: 1.328px;
+	height: 4px;
+	left: 23px;
+	top: 3.667px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.Capacity {
+	position: absolute;
+	overflow: visible;
+	width: 18px;
+	height: 7.333px;
+	left: 2px;
+	top: 2px;
+}
+.Wifi {
+	overflow: visible;
+	position: absolute;
+	width: 15.272px;
+	height: 10.966px;
+	left: 315.694px;
+	top: 17.331px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.Cellular_Connection {
+	overflow: visible;
+	position: absolute;
+	width: 17px;
+	height: 10.667px;
+	left: 293.667px;
+	top: 17.667px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Time_Style {
+	position: absolute;
+	width: 54px;
+	height: 20px;
+	left: 21px;
+	top: 15.5px;
+	overflow: visible;
+}
+#Time {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 55px;
+	height: 20px;
+	text-align: center;
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(255,255,255,1);
+	letter-spacing: -0.2px;
+}
+.Rectangle_159 {
+	position: absolute;
+	overflow: visible;
+	width: 375px;
+	height: 60px;
+	left: 0px;
+	top: 44px;
+}
+#Group_1614 {
+	position: absolute;
+	width: 27.484px;
+	height: 4.78px;
+	left: 174px;
+	top: 390.61px;
+	overflow: visible;
+}
+.Ellipse_297 {
+	position: absolute;
+	overflow: visible;
+	width: 4.78px;
+	height: 4.78px;
+	left: 0px;
+	top: 0px;
+}
+.Ellipse_298 {
+	position: absolute;
+	overflow: visible;
+	width: 4.78px;
+	height: 4.78px;
+	left: 11.352px;
+	top: 0px;
+}
+.Ellipse_299 {
+	position: absolute;
+	overflow: visible;
+	width: 4.78px;
+	height: 4.78px;
+	left: 22.704px;
+	top: 0px;
+}
+#Redockto {
+	position: absolute;
+	left: 91px;
+	top: 322px;
+	overflow: visible;
+	width: 195px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 40px;
+	color: rgba(255,255,255,1);
+}

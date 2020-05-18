@@ -58,16 +58,43 @@
 </head>
 
 <body>
+    <div class="slide_window">
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home.html'">
+                Goto User Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'home_doctor.html'">
+                Goto Doctor Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'admin.html'">
+                Goto Admin Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
+        </div>
+    </div>
     <div data-role="page">
 
         <div data-role="header" class="header">
             <center>
-              <div class="goto_home" onclick="window.location='home.html';">
-                    <i class="fa fa-home"></i>
+              <div class="goto_home">
+                    <i class="fa fa-bars"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
                 <div class="sos_btn">
-                    SOS <i class="fa fa-ambulance"></i>
+                    Instant<br>Support
                 </div>
             </center>
         </div><!-- /footer -->
@@ -128,7 +155,7 @@
 
                   if(i==0) {
 
-                    temp1 = `<li data-target="#myCarousel" data-slide-to="${i}" class="active"></li>`;
+                    temp1 = `<li data-target="#myCarousel"  style="background-color: black"  data-slide-to="${i}" class="active"></li>`;
 
                     temp2 = `<div class="item active">
                               <img src="${data[i]["url"]}" alt="${data[i]["title"]}" class="carousel-img">
@@ -136,7 +163,7 @@
 
                   } else {
 
-                    temp1 = `<li data-target="#myCarousel" data-slide-to="${i}"></li>`;
+                    temp1 = `<li data-target="#myCarousel"  style="background-color: black"  data-slide-to="${i}"></li>`;
 
                     temp2 = `<div class="item">
                               <img src="${data[i]["url"]}" alt="${data[i]["title"]}" class="carousel-img">

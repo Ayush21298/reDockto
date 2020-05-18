@@ -139,7 +139,7 @@ client.on('stream-subscribed', function (evt) {
 client.on('stream-removed',removeVideoStream);
 client.on('peer-leave',removeVideoStream);
 
-var delay = 30000; 
+var delay = 180000; 
 setTimeout(function(){ 
     if(not_accepting == true){
         console.log("Ending");

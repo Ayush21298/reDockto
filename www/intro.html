@@ -58,55 +58,45 @@
 </head>
 
 <body>
-    <!-- <div class="app">
-        <h4><small>Fuck Off</small></h4>
-        <script type="text/javascript">
-            var delay = 2000; 
-            setTimeout(function(){ window.location = 'intro.html'; }, delay);
-        </script>
-    </div> -->
-
-    <div class="container">
-      <!-- <h2>Carousel Example</h2>   -->
-      <div id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="img/la.jpg" alt="Los Angeles" class="carousel-img">
-          </div>
-
-          <div class="item">
-            <img src="img/chicago.jpg" alt="Chicago" class="carousel-img">
-          </div>
-        
-          <div class="item">
-            <img src="img/ny.jpg" alt="New york" class="carousel-img">
-          </div>
+    <div class="slide_window">
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home.html'">
+                Goto User Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'home_doctor.html'">
+                Goto Doctor Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'admin.html'">
+                Goto Admin Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
         </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-          <!-- <i class="fa fa-address-book" style="vertical-align: center;"></i> -->
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
     </div>
-
-    <a href="home_main.html"><small class="skip_btn">Skip</small></a>
-
-
+    <div class="app">
+        <h4>Our mission is to enhance potential of lives via enabling people to achieve their full potential</h4>
+        <!-- <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div> -->
+        <!-- <a href="intro.html">go</a> -->
+        <script type="text/javascript">
+            // var delay = 2000; 
+            // setTimeout(function(){ window.location = 'home_main.html'; }, delay);
+        </script>
+    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">

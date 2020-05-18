@@ -58,16 +58,47 @@
 </head>
 
 <body>
+    <div class="slide_window">
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home.html'">
+                Goto User Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'home_doctor.html'">
+                Goto Doctor Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'admin.html'">
+                Goto Admin Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
+        </div>
+    </div>
     <div class="app">
-        <h4><small>With You, Every Step Of The Way</small></h4>
+        <h4 id="tag_line_1"><small>With You, Every Step Of The Way</small></h4>
+        <h4 id="tag_line_2" style="display: none;">Our mission is to enhance potential of lives via enabling people to achieve their full potential</h4>
+        <h4 id="tag_line_3" style="display: none;">Helpline. Therapies.Appointment. Expert opinion...</h4>
         <!-- <div id="deviceready" class="blink">
             <p class="event listening">Connecting to Device</p>
             <p class="event received">Device is Ready</p>
         </div> -->
         <!-- <a href="intro.html">go</a> -->
         <script type="text/javascript">
-            var delay = 2000; 
-            setTimeout(function(){ window.location = 'intro.html'; }, delay);
+            var delay = 3000; 
+            setTimeout(function(){ $("#tag_line_1").hide(); $("#tag_line_2").show(); $("#tag_line_3").hide(); }, 1*delay);
+            setTimeout(function(){ $("#tag_line_1").hide(); $("#tag_line_2").hide(); $("#tag_line_3").show(); }, 2*delay);
+            setTimeout(function(){ window.location = 'home_main.html'; }, 3*delay);
         </script>
     </div>
     <script type="text/javascript" src="cordova.js"></script>

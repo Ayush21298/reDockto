@@ -56,6 +56,8 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+
+
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -79,7 +81,15 @@ $(".available_toggle").click(function() {
 });
 
 $(".sos_btn").click(function() {
-  alert("SOS will be integrated after backend !");
+  window.location = 'counsellor.html';
+});
+
+$(".goto_home").click(function() {
+  $(".slide_window").animate({
+        width: "toggle",
+        opacity: "toggle",
+      }, "slow");
+  $(".slide_menu").toggle("slow");
 });
 
 
@@ -143,3 +153,108 @@ var end_call_url = base_url + "counselling/end_call/";
 
 var admin_get_url = base_url + "user/admin/";
 
+function sign_out() {
+  setCookie("phone_no", "", 30);
+  setCookie("name", "", 30);
+  setCookie("email", "", 30);
+  setCookie("dob", "", 30);
+  setCookie("profession", "", 30);
+  setCookie("wallet", "", 30);
+  setCookie("address", "", 30);
+  setCookie("doctor", "", 30);    
+}
+
+$(document).ready(function(){
+  $(".slide_window").html("");
+
+  var slide_window = `
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home_main.html'">
+                Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="sign_out(); window.location = 'sign_in.html'">
+                Sign Out
+            </div>
+        </div>`
+
+  $(".slide_window").html(slide_window);
+});
+
+function footer_btn_back(argument) {
+  // window.history.back();
+  var url = (window.location.pathname).split('/')
+  url = url[url.length-1];
+
+  var back_urls = {}
+
+  // back_urls["add_appointment.html"] = "home.html";
+  back_urls["admin.html"] = "home_main.html";
+  // back_urls["agora_doctor.html"] = "home.html";
+  // back_urls["agora_user.html"] = "home.html";
+  back_urls["appointment_doctor.html"] = "home_doctor.html";
+  back_urls["audio_book.html"] = "home.html";
+  // back_urls["audio_book_old.html"] = "home.html";
+  // back_urls["call2.html"] = "home.html";
+  // back_urls["call.html"] = "home.html";
+  back_urls["counselling_history_doctor.html"] = "home_doctor.html";
+  back_urls["counsellor_feedback.html"] = "home.html";
+  back_urls["counsellor.html"] = "home.html";
+  // back_urls["current_session.html"] = "home.html";
+  back_urls["doctopad_doctor.html"] = "home_doctor.html";
+  // back_urls["doctor_call.html"] = "home.html";
+  back_urls["expert_opinion.html"] = "home.html";
+  back_urls["home_doctor.html"] = "home_main.html";
+  back_urls["home.html"] = "home_main.html";
+  back_urls["home_main.html"] = "home_main.html";
+  back_urls["index.html"] = "home.html";
+  // back_urls["intro.html"] = "home.html";
+  // back_urls["intro_old.html"] = "home.html";
+  // back_urls["patient_list.html"] = "home.html";
+  back_urls["profile_doctor.html"] = "home_doctor.html";
+  back_urls["profile.html"] = "home.html";
+  back_urls["recharge_wallet.html"] = "home.html";
+  back_urls["record_list.html"] = "home.html";
+  back_urls["register.html"] = "home_main.html";
+  back_urls["sign_in.html"] = "home_main.html";
+  // back_urls["spec.html"] = "home.html";
+  // back_urls["support.html"] = "home.html";
+  back_urls["therapy.html"] = "home.html";
+  back_urls["therapy_upload_doctor.html"] = "home_doctor.html";
+  // back_urls["update_record.html"] = "home.html";
+  // back_urls["user_call.html"] = "home.html";
+  back_urls["video.html"] = "home.html";
+  back_urls["video_upload_doctor.html"] = "home_doctor.html";
+  // back_urls["view_history.html"] = "home.html";
+  // back_urls["view_record.html"] = "home.html";
+  back_urls["withdraw_wallet.html"] = "home_doctor.html";
+
+  try {
+    if(back_urls[url] != null)
+      window.location.href = back_urls[url];
+    else
+      window.history.back();
+  } catch {
+    window.history.back();
+  }
+}
+
+function footer_btn_home(argument) {
+  window.location = "home_main.html"
+}
+
+function footer_btn_next(argument) {
+  window.history.forward();
+}

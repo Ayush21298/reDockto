@@ -27,7 +27,7 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap: data:; style-src 'self' 'unsafe-inline'; media-src *" />
     <!-- Good default declaration:
     * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
     * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
@@ -58,19 +58,58 @@
 </head>
 
 <body>
+    <div class="slide_window">
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home.html'">
+                Goto User Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'home_doctor.html'">
+                Goto Doctor Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'admin.html'">
+                Goto Admin Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
+        </div>
+    </div>
     <div data-role="page">
 
         <div data-role="header" class="header">
             <center>
-                <div class="goto_home" onclick="window.location='home.html';">
-                    <i class="fa fa-home"></i>
+                <div class="goto_home">
+                    <i class="fa fa-bars"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
-                <div class="sos_btn">
-                    SOS <i class="fa fa-ambulance"></i>
-                </div>
+                <!-- <div class="sos_btn">
+                    Instant<br>Support
+                </div> -->
             </center>
         </div><!-- /footer -->
+
+        
+        <div data-role="footer" class="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li id="footer_btn_back" onclick="footer_btn_back()"><a href="#"><i class="fa fa-angle-left navbar_btn"></i></a></li>
+                    <!-- <li><a href="#" class="ui-btn-active"><i class="fa fa-home navbar_btn"></i></a></li> -->
+                    <li id="footer_btn_home" onclick="footer_btn_home()"><a href="#"><i class="fa fa-home navbar_btn"></i></a></li>
+                    <li id="footer_btn_next" onclick="footer_btn_next()"><a href="#"><i class="fa fa-angle-right navbar_btn"></i></a></li>
+                </ul>
+            </div>
+        </div>
 
         <div class="main_content">
             <div class="sign_in_container">
@@ -78,16 +117,16 @@
                     <input type="text" name="phone_in" id="phone_in" placeholder="Phone No. : 9999999999" class="sign_in_input">
                     <input type="password" name="password_in" id="password_in" placeholder="Password" class="sign_in_input">
                     <input type="password" name="password_in2" id="password_in2" placeholder="Confirm Password" class="sign_in_input">
-                    <label for="doctor_user">Choose a role:</label>
+                    <label for="doctor_user_in">Choose a role:</label>
 
                     <select id="doctor_user_in" class="sign_in_input">
                       <option value="doctor">Doctor</option>
                       <option value="patient" selected>User</option>
                     </select> 
 
-                    <input type="number" name="experience_in" id="experience_in" placeholder="Experience (in yrs) (doctor)" class="sign_in_input">
+                    <input type="number" name="experience_in" id="experience_in" placeholder="Experience (in yrs)" class="sign_in_input doctor_choosen">
 
-                    <input type="number" name="rate_in" id="rate_in" placeholder="Rate (&#8377; per Hr) (doctor)" class="sign_in_input">
+                    <input type="number" name="rate_in" id="rate_in" placeholder="Rate (&#8377; per Hr)" class="sign_in_input doctor_choosen">
                 </div>
                 <div class="profile_btn register_button">Register</div>
                 <center><p>OR</p></center>
@@ -96,6 +135,7 @@
             <div class="otp_container">
                 <div class="sign_in_form">
                     <input type="password" name="otp_in" id="otp_in" placeholder="OTP" class="sign_in_input">
+                    <div id="resend_otp" style="text-align: center;">Resend OTP</div>
                 </div>
                 <div class="profile_btn otp_in_button">Verify OTP</div>
                 <center><p>OR</p></center>
@@ -114,7 +154,20 @@
         }
 
         $(document).ready(function() {
-
+            var temp_val = $("#doctor_user_in").val();
+           if (temp_val == "doctor") {
+            $(".doctor_choosen").show();
+           } else {
+            $(".doctor_choosen").hide();
+           }
+        });
+        $('#doctor_user_in').on('selectmenuchange',function () {
+           var temp_val = $(this).val();
+           if (temp_val == "doctor") {
+            $(".doctor_choosen").show();
+           } else {
+            $(".doctor_choosen").hide();
+           }
         });
         $(".register_button").click(function() {
             var temp_phone = $("#phone_in").val();
@@ -132,6 +185,20 @@
                 $("#password_in").val("");
                 $("#password_in2").val("")
             }
+            $.post(user_send_otp_url,
+            {
+            "phone_no": temp_phone
+            },
+            function(data, status){
+                if(data["status"] != "Failed"){
+                    alert("OTP sent to mobile no.");
+                } else {
+                    alert("Server Error");
+                }
+            });
+        });
+        $("#resend_otp").click(function(){
+            var temp_phone = $("#phone_in").val();
             $.post(user_send_otp_url,
             {
             "phone_no": temp_phone

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>reDockto</title>
+
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <script src="js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+</head>
+
+<body>
+    <div class="slide_window">
+        <div class="slide_logo">
+            <img src="img/logo.png" class="slide_logo_img">
+        </div>        
+        <hr>
+        <div class="slide_menu">
+            <div class="slide_menu_options" onclick="window.location = 'home.html'">
+                Goto User Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'home_doctor.html'">
+                Goto Doctor Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'admin.html'">
+                Goto Admin Home
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'support.html'">
+                Support
+            </div>
+            <hr>
+            <div class="slide_menu_options" onclick="window.location = 'profile.html'">
+                Profile
+            </div>
+        </div>
+    </div>
+    <div data-role="page">
+
+        <div data-role="header" class="header">
+            <center>
+                <div class="goto_home">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <img src="img/logo.png" class="brand_logo">
+                <div class="available_toggle available_toggle_on">
+                    Available <i class="fa fa-toggle-on"></i>
+                </div>
+                <div class="available_toggle available_toggle_off">
+                    Busy <i class="fa fa-toggle-off"></i>
+                </div>
+            </center>
+        </div><!-- /footer -->
+
+
+        
+        <div data-role="footer" class="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li id="footer_btn_back" onclick="footer_btn_back()"><a href="#"><i class="fa fa-angle-left navbar_btn"></i></a></li>
+                    <!-- <li><a href="#" class="ui-btn-active"><i class="fa fa-home navbar_btn"></i></a></li> -->
+                    <li id="footer_btn_home" onclick="footer_btn_home()"><a href="#"><i class="fa fa-home navbar_btn"></i></a></li>
+                    <li id="footer_btn_next" onclick="footer_btn_next()"><a href="#"><i class="fa fa-angle-right navbar_btn"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main_content">
+
+            <center><h3>reDockto Support</h3></center>
+            
+            <div class="history_container">
+                <div>
+                    <h4>To</h4>
+                    <div>
+                        <input type="text" name="video_title_in" id="video_title_in" disabled="" value="support@redockto.com">
+                    </div>
+                    <hr>
+                    <h4>Full Name</h4>
+                    <div>
+                        <input type="text" name="video_url_in" id="video_url_in" placeholder="FirstName LastName">
+                    </div>
+                    <hr>
+                    <h4>Query Description</h4>
+                    <div>
+                        <textarea name="video_description_in" id="video_description_in" placeholder="ABC"></textarea>
+                    </div>
+                    <div class="profile_btn video_upload_button">Submit</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        function reload(){
+            if(getCookie("phone_no") == "") {
+                window.location = 'sign_in.html';
+            }
+        }
+
+        $(document).ready(function() {
+            reload();
+        });
+
+        $(".video_upload_button").click(function(){
+            // var temp_title = $("#video_title_in").val();
+            // var temp_url = $("#video_url_in").val();
+            // var temp_description = $("#video_description_in").val();
+
+
+            // $.post(video_upload_url,
+            // {
+            //     "title" : temp_title,
+            //     "url" : temp_url,
+            //     "description" : temp_description,
+            //     "author" : getCookie("phone_no"),
+            //     "uploader" : getCookie("phone_no")
+            // },
+            // function(data, status){
+
+            //     alert(temp_res);
+
+            // });
+            alert(`
+Your Query was recoded. We'll get back to you soon
+
+Query ID : RUQ001`)
+        });
+    </script>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
