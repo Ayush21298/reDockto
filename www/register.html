@@ -124,9 +124,44 @@
                       <option value="patient" selected>User</option>
                     </select> 
 
-                    <input type="number" name="experience_in" id="experience_in" placeholder="Experience (in yrs)" class="sign_in_input doctor_choosen">
+                    <div class="doctor_choosen">
+                        <input type="number" name="experience_in" id="experience_in" placeholder="Experience (in yrs)" class="sign_in_input ">
 
-                    <input type="number" name="rate_in" id="rate_in" placeholder="Rate (&#8377; per Hr)" class="sign_in_input doctor_choosen">
+                        <input type="number" name="rate_in" id="rate_in" placeholder="Rate (&#8377; per Hr)" class="sign_in_input ">
+
+                        <label for="tag1_in">Tag1</label>
+                        <input type="checkbox" name="tag1_in" id="tag1_in">
+
+                        <label for="tag2_in">Tag2</label>
+                        <input type="checkbox" name="tag2_in" id="tag2_in">
+
+                        <label for="tag3_in">Tag3</label>
+                        <input type="checkbox" name="tag3_in" id="tag3_in">
+
+                        <label for="tag4_in">Tag4</label>
+                        <input type="checkbox" name="tag4_in" id="tag4_in">
+
+                        <label for="tag5_in">Tag5</label>
+                        <input type="checkbox" name="tag5_in" id="tag5_in">
+
+                        <label for="tag6_in">Tag6</label>
+                        <input type="checkbox" name="tag6_in" id="tag6_in">
+
+                        <label for="tag7_in">Tag7</label>
+                        <input type="checkbox" name="tag7_in" id="tag7_in">
+
+                        <label for="tag8_in">Tag8</label>
+                        <input type="checkbox" name="tag8_in" id="tag8_in">
+
+                        <label for="tag9_in">Tag9</label>
+                        <input type="checkbox" name="tag9_in" id="tag9_in">
+
+                        <label for="tag10_in">Tag10</label>
+                        <input type="checkbox" name="tag10_in" id="tag10_in">
+
+                        
+                    </div>
+
                 </div>
                 <div class="profile_btn register_button">Register</div>
                 <center><p>OR</p></center>
@@ -237,7 +272,17 @@
                         "password": temp_pass,
                         "doctor": temp_doctor_user,
                         "experience": temp_experience,
-                        "rate": temp_rate
+                        "rate": temp_rate,
+                        "tag1": $("#tag1_in").prop("checked"),
+                        "tag2": $("#tag2_in").prop("checked"),
+                        "tag3": $("#tag3_in").prop("checked"),
+                        "tag4": $("#tag4_in").prop("checked"),
+                        "tag5": $("#tag5_in").prop("checked"),
+                        "tag6": $("#tag6_in").prop("checked"),
+                        "tag7": $("#tag7_in").prop("checked"),
+                        "tag8": $("#tag8_in").prop("checked"),
+                        "tag9": $("#tag9_in").prop("checked"),
+                        "tag10": $("#tag10_in").prop("checked")
                         },
                         function(data, status){
                             if(data["status"] != "Failed"){

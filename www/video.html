@@ -131,9 +131,48 @@
     </div>
 
     <script type="text/javascript">
-        $(document).ready(function() {
 
-            $("#main_content_video").html("");
+        function load_therapy(){
+            temp_text = `
+                            <a href="#" onclick="load_therapy()" class="library_btns">Audio</a>
+                            <a href="#" onclick="load_video()" class="library_btns">Video</a>
+
+                        `;
+
+            $("#main_content_video").html(temp_text);
+
+
+            $.get(therapy_get_url,
+            {},
+            function(data, status){
+                for (var i = 0; i < data.length ; i++) {
+                    var temp = `<div class="video_container">
+                <div class="video_thumbnail" style="height: auto;">
+                    <audio controls>
+                      <source src="${data[i]["url"]}">
+                    </audio>
+                </div>
+                <div class="video_description">
+                    <h4>${data[i]["title"]}</h4>
+                    <p><small>
+                        ${data[i]["description"]}
+                    </p></small>
+                </div>
+            </div>`;
+
+                $("#main_content_video").html($("#main_content_video").html() + temp);
+                }
+            });
+        }
+
+        function load_video() {
+            temp_text = `
+                            <a href="#" onclick="load_therapy()" class="library_btns">Audio</a>
+                            <a href="#" onclick="load_video()" class="library_btns">Video</a>
+
+                        `;
+
+            $("#main_content_video").html(temp_text);
 
             $.get(video_get_url,
             {},
@@ -153,7 +192,13 @@
 
                 $("#main_content_video").html($("#main_content_video").html() + temp);
                 }
-            });
+            });   
+        }
+
+        $(document).ready(function() {
+
+            load_video();
+            
         });
     </script>
 

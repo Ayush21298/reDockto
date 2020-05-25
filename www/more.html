@@ -93,11 +93,8 @@
                     <i class="fa fa-bars"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
-                <div class="available_toggle available_toggle_on">
-                    Available <i class="fa fa-toggle-on"></i>
-                </div>
-                <div class="available_toggle available_toggle_off">
-                    Busy <i class="fa fa-toggle-off"></i>
+                <div class="sos_btn">
+                    Instant<br>Support
                 </div>
             </center>
         </div><!-- /footer -->
@@ -115,55 +112,36 @@
         </div>
 
         <div class="main_content">
-
-            <!-- <div class="sec_sel" onclick = "window.location = 'appointment_doctor.html';"> -->
-            <div class="sec_sel" onclick = "alert('Feature will be available soon.')">
-                <img src="img/appointment.png">
-                <p>
-                    Appointments
-                </p>
-            </div>
-            <div class="sec_sel" onclick = "window.location = 'doctopad_doctor.html';">
-                <img src="img/doctopad.png">
-                <p>
-                    Docktopad
-                </p>
-            </div>
-            <div class="sec_sel" onclick = "window.location = 'video_upload_doctor.html';">
-                <img src="img/video.png">
-                <p>
-                    Video Upload
-                </p>
-            </div>
-            <div class="sec_sel" onclick = "window.location = 'therapy_upload_doctor.html';">
-                <img src="img/therapy.png">
-                <p>
-                    Therapy Upload
-                </p>
-            </div>
-            <div class="sec_sel" onclick = "window.location = 'counselling_history_doctor.html';">
-                <img src="img/counsellor.png">
-                <p>
-                    Couselling
-                </p>
-            </div>
-            <div class="sec_sel" onclick = "window.location = 'profile_doctor.html';">
-                <img src="img/profile.png">
-                <p>
-                    Profile
-                </p>
+            <div class="profile_container">
+                <div class="profile_information">
+                    <div class="profile_btn view_history_button" onclick="window.location = 'profile.html'">Profile Page</div>
+                    <div class="profile_btn recharge_button" onclick="window.location = 'about_us.html'">About Us</div>
+                    <div class="profile_btn edit_profile_button" onclick="window.location = 'app_feedback.html'">App Feedback</div>
+                    <div class="profile_btn sign_out_button" onclick="window.location = 'app_feedback.html'">Sign Out</div>
+                    <div class="profile_btn sign_in_button" onclick="window.location = 'sign_in.html'">Sign In</div>
+                </div>
             </div>
         </div>
+        
+
     </div>
 
     <script type="text/javascript">
         $(document).ready(function() {
             if(getCookie("phone_no") == "") {
-                window.location = 'sign_in.html';
-            } else if(getCookie("doctor") == "false") {
-                alert("You are not registered as doctor");
-                window.location = 'home.html';
+                $(".sign_out_button").hide();
+            } else {
+                $(".sign_in_button").hide();
             }
+        });
+        function reload(){
+            if(getCookie("phone_no") == "") {
+                window.location = 'sign_in.html';
+            }
+        }
+        $(".sign_out_button").click(function() {
+            sign_out();
+            reload();
         });
     </script>
 
@@ -171,7 +149,6 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
-        // alert(getCookie("phone_no"));
     </script>
 </body>
 

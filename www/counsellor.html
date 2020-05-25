@@ -113,7 +113,7 @@
 
         <div class="main_content">
 
-            <div class="container" style="width: 80vw; margin: 10vw; height: 25vh;">
+            <div class="container" style="width: 90vw; margin: 5vw; height: 25vh;">
               <!-- <h2>Carousel Example</h2>   -->
               <div id="myCarousel" class="carousel slide"  data-ride="carousel">
                 <!-- Indicators -->
@@ -154,6 +154,35 @@
               </div>
             </div>
 
+            <center>
+                <label for="availibility_sel">Availibility</label>
+                <select id="availibility_sel" class="sign_in_input">
+                  <option value="all" selected>All</option>
+                  <option value="available">Available Now</option>
+                </select> 
+
+                <br>
+
+                <label for="tag_sel">Tags</label>
+                <select id="tag_sel" class="sign_in_input">
+                  <option value="all" selected>All</option>
+                  <option value="tag1">tag1</option>
+                  <option value="tag2">tag2</option>
+                  <option value="tag3">tag3</option>
+                  <option value="tag4">tag4</option>
+                  <option value="tag5">tag5</option>
+                  <option value="tag6">tag6</option>
+                  <option value="tag7">tag7</option>
+                  <option value="tag8">tag8</option>
+                  <option value="tag9">tag9</option>
+                  <option value="tag10">tag10</option>
+                </select> 
+
+                <br>
+
+                <div class="profile_btn register_button" onclick="load_all()">Filter</div>
+
+            </center>
 
             <center><h4>Counsellors</h4></center>
 
@@ -221,6 +250,13 @@
     <script type="text/javascript">
 
         function update_video_call_details(){
+            if(getCookie("phone_no") == ""){
+                alert("Please Sign Up First");
+                window.location="sign_in.html";
+            } else if(parseFloat(getCookie("wallet")) <= 100.0) {
+                alert("Minumum Wallet balance 100.0 required");
+                window.location="wallet.html";
+            }
             $.post(update_call_details_url,
             {
                 "user_phone_call" : getCookie("user_phone_call"),
@@ -229,11 +265,19 @@
             },
             function(data, status){
                 setCookie("call_id",data["id"]);
+                setCookie("call_type","video");
                 window.location='agora_user.html';
             });
         }
 
         function update_audio_call_details(){
+            if(getCookie("phone_no") == ""){
+                alert("Please Sign Up First");
+                window.location="sign_in.html";
+            } else if(parseFloat(getCookie("wallet")) <= 100.0) {
+                alert("Minumum Wallet balance 100.0 required");
+                window.location="wallet.html";
+            }
             $.post(update_call_details_url,
             {
                 "user_phone_call" : getCookie("user_phone_call"),
@@ -242,22 +286,66 @@
             },
             function(data, status){
                 setCookie("call_id",data["id"]);
+                setCookie("call_type","audio");
                 window.location='agora_user.html';
             });
         }
 
-        $(document).ready(function() {
+        function load_all(){
 
-            $("#main_content_counsellor").html("");
+            // alert($("#availibility_sel").val());
+            // alert($("#tag_sel").val());
+
+            // temp_text = `
+            //                 <a href="#" onclick="load_available()" class="library_btns">Available Now</a>
+            //                 <a href="#" onclick="load_all()" class="library_btns">All</a>
+
+            //             `;
+
+            temp_text = ``;
+
+            $("#main_content_counsellor").html(temp_text);
 
             $.get(doctor_get_url,
             {},
             function(data, status){
                 for (var i = 0; i < data.length ; i++) {
-                    var temp = `<div class="counsellor_container">
-                                    <div class="counsellor_pic">
-                                        <img src="img/profile.png">
-                                        <div class="availibility">
+
+                    var tags_string = '';
+
+                    var show_this = false;
+
+                    if($("#tag_sel").val() == "all") {
+                        show_this = true;
+                    }
+
+                    for (var j = 1; j <= 10; j++) {
+                        if(data[i][`tag${j}`] == true){
+                            tags_string += `tag${j}, `
+                            if($("#tag_sel").val() == `tag${j}`) {
+                                show_this = true;
+                            }
+                        }
+                    }
+
+                    if(show_this == false){
+                        continue;
+                    }
+
+                    var availibility = ``;
+
+                    if (data[i]['busy'] == true) {
+
+                        if($("#availibility_sel").val() == "available"){
+                            continue;
+                        }
+
+                        availibility = `<div class="availibility">
+                                            <div class="busy"></div>
+                                            Busy
+                                        </div>`;
+                    } else {
+                        availibility = `<div class="availibility">
                                             <div class="available"></div>
                                             Available
                                         </div>
@@ -267,20 +355,43 @@
                                         <br>
                                         <div class="call_btn">
                                             <i class="fa fa-phone" onclick='setCookie("user_phone_call",getCookie("phone_no")); setCookie("doctor_phone_call",${data[i]["phone_no"]}); update_audio_call_details();''> Audio</i>
-                                        </div>
+                                        </div>`;
+                    }
+
+                    var temp = `<div class="counsellor_container">
+                                    <div class="counsellor_pic">
+                                        <img src="img/profile.png">
+                                        ${availibility}
                                     </div>
                                     <div class="counsellor_info">
                                         <h4>${data[i]["name"]}</h4>
-                                        <b>Location</b> : ${data[i]["address"]}<br>
-                                        <b>Eligibility</b> : ${data[i]["profession"]}<br>
+                                        <!-- <b>Location</b> : ${data[i]["address"]}<br>
+                                        <b>Eligibility</b> : ${data[i]["profession"]}<br> -->
+                                        <b>Tags</b> : ${tags_string}<br>
                                         <b>Experience (yr.)</b> : ${data[i]["experience"]}<br>
                                         <b>Rate (per hr.)</b> : ₹ ${data[i]["rate"]}<br>
                                     </div>
+                                    <center><h4>Reviews</h4></center>
+                                    <div style="width: 100%; height: 20vh; overflow:scroll;">`;
+
+                        for (var j = 0; j < data[i]['doctor_feedback'].length; j++) {
+
+                            temp += `
+                            <div style="box-shadow: grey 1px 1px 1px 1px; padding:1rem;">
+                                ${data[i]['doctor_feedback'][j]['comments']}
+                            </div>`;
+                        }
+
+                        temp += `</div>
                                 </div>`;
 
                 $("#main_content_counsellor").html($("#main_content_counsellor").html() + temp);
                 }
             });
+        }
+
+        $(document).ready(function() {
+            load_all();
         });
     </script>
 

@@ -113,7 +113,7 @@
 
         <div class="main_content">
             
-            <div class="counsellor_container">
+            <!-- <div class="counsellor_container">
                 <div class="counsellor_pic">
                     <img src="img/profile.png">
                     <div class="availibility">
@@ -131,7 +131,7 @@
                     <b>Experience</b> : 10 yrs (240 patients)<br>
                     <b>Rate (per hr.)</b> : ₹ 999.00<br>
                 </div>
-            </div>
+            </div> -->
 
             <div class="counsellor_container" >
                     <center>
@@ -140,10 +140,10 @@
                     
                     <hr>
 
-                    <b>Talk Duration</b> : 60min<br>
+                    <!-- <b>Talk Duration</b> : 60min<br>
                     <b>Amount</b> : ₹ 999.00<br>
 
-                    <hr>
+                    <hr> -->
 
                     <i class="fa fa-star-o lg feedback_star_no" onclick="give_feedback(1);"></i>
                     <i class="fa fa-star lg feedback_star_yes" onclick="give_feedback(1);"></i>
@@ -156,7 +156,11 @@
                     <i class="fa fa-star-o lg feedback_star_no" onclick="give_feedback(5);"></i>
                     <i class="fa fa-star lg feedback_star_yes" onclick="give_feedback(5);"></i>
 
-                    <div class="profile_btn therapy_upload_button" onclick="alert('Feedback Submitted'); window.location = 'home.html';">Submit</div>
+                    <textarea id="feed_comments"></textarea>
+
+                    <center><a href="#" onclick="window.location='home.html'">Skip</a></center>
+
+                    <div class="profile_btn therapy_upload_button" onclick="submit_feedback()">Submit</div>
 
                     </center>
             </div>
@@ -166,7 +170,31 @@
     </div>
 
     <script type="text/javascript">
+
+        var stars = 5;
+
+        function submit_feedback(){
+
+            // alert($("#feed_comments").val());
+
+            $.post(counsellor_feedback_url,
+            {
+            "phone_no": getCookie("phone_no"),
+            "doctor_phone_no" : getCookie("doctor_phone_call"),
+            "stars": stars,
+            "comments": $("#feed_comments").val()
+            },
+            function(data, status){
+                alert(JSON.stringify(data));
+                alert('Feedback Submitted');
+                window.location = 'home.html';
+            });
+        }
+
         function give_feedback(num) {
+
+            stars = num;
+
             $( ".feedback_star_yes" ).each(function( index ) {
               if( index < num ){
                 $( this ).show();

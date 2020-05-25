@@ -105,12 +105,22 @@ alert(channel_name);
 client.join(null,channel_name,null, (uid)=>{
 
     // Stream object associated with your web cam is initialized
-    let localStream = AgoraRTC.createStream({
-        streamID: uid,
-        audio: true,
-        video: true,
-        screen: false
-    });
+    var localStream;
+    if(getCookie("call_type") == "audio") {
+        localStream = AgoraRTC.createStream({
+            streamID: uid,
+            audio: true,
+            video: false,
+            screen: false
+        });
+    } else {
+        localStream = AgoraRTC.createStream({
+            streamID: uid,
+            audio: true,
+            video: true,
+            screen: false
+        });
+    }
 
     // Associates the stream to the client
     localStream.init(function() {
@@ -151,7 +161,7 @@ setTimeout(function(){
             "call_id" : getCookie("call_id")
         },
         function(data, status){
-            alert("Doctor seems to be busy.");
+            alert("We apologize for that. Please try another counsellor.");
             window.location = "counsellor.html";
         });
     }
@@ -169,5 +179,17 @@ function removeVideoStream_my () {
 
 
 $("#end_call_btn").click(function(){
-    removeVideoStream_my();
+    // removeVideoStream_my();
+    console.log("Ending");
+    document.getElementById("calling_audio").pause();
+    document.getElementById("ending_audio").play();
+
+    $.post(missed_call_url,
+    {
+        "call_id" : getCookie("call_id")
+    },
+    function(data, status){
+        alert("We apologize for that. Please try another counsellor.");
+        window.location = "counsellor.html";
+    });
 });

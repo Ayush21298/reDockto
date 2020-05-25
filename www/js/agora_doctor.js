@@ -25,6 +25,16 @@ function addVideoStream(streamId){
     },
     function(data, status){
         alert("Call Started");
+        $.post(update_doctor_status_url,
+        {
+        "phone_no": getCookie("phone_no"),
+        "busy": "true"
+        },
+        function(data, status){
+            // alert(JSON.stringify(data));
+        });
+
+        setCookie("busy", "true");
     });
 
 
@@ -44,6 +54,16 @@ function end_call (){
     },
     function(data, status){
         alert("Call Ended.");
+        $.post(update_doctor_status_url,
+        {
+        "phone_no": getCookie("phone_no"),
+        "busy": "false"
+        },
+        function(data, status){
+            // alert(JSON.stringify(data));
+        });
+
+        setCookie("busy", "false");
     });
 }
 
@@ -108,12 +128,22 @@ alert(channel_name);
 client.join(null,channel_name,null, (uid)=>{
 
     // Stream object associated with your web cam is initialized
-    let localStream = AgoraRTC.createStream({
-        streamID: uid,
-        audio: true,
-        video: true,
-        screen: false
-    });
+    var localStream;
+    if(getCookie("call_type") == "audio") {
+        localStream = AgoraRTC.createStream({
+            streamID: uid,
+            audio: true,
+            video: false,
+            screen: false
+        });
+    } else {
+        localStream = AgoraRTC.createStream({
+            streamID: uid,
+            audio: true,
+            video: true,
+            screen: false
+        });
+    }
 
     // Associates the stream to the client
     localStream.init(function() {
@@ -145,6 +175,16 @@ client.on('peer-leave',removeVideoStream);
 var delay = 30000; 
 setTimeout(function(){ 
     if(not_accepting == true){
+        $.post(update_doctor_status_url,
+        {
+        "phone_no": getCookie("phone_no"),
+        "busy": "false"
+        },
+        function(data, status){
+            // alert(JSON.stringify(data));
+        });
+
+        setCookie("busy", "false");
         document.getElementById("calling_audio").pause();
         document.getElementById("ending_audio").play();
         alert("User seems to have left");

@@ -34,6 +34,18 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        document.addEventListener("backbutton", function(e){
+           // if($.mobile.activePage.is('#homepage')){
+           //     e.preventDefault();
+           //     navigator.app.exitApp();
+           // }
+           // else {
+           //     navigator.app.backHistory();
+           // }
+           navigator.app.exitApp();
+        }, false);
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -77,7 +89,37 @@ function getCookie(cname) {
 var logged_in = false;
 
 $(".available_toggle").click(function() {
-  $(".available_toggle").toggle();
+  // $(".available_toggle").toggle();
+  var temp_busy = getCookie("busy");
+  if(temp_busy == "true") {
+
+    $.post(update_doctor_status_url,
+    {
+    "phone_no": getCookie("phone_no"),
+    "busy": "false"
+    },
+    function(data, status){
+        // alert(JSON.stringify(data));
+    });
+
+    setCookie("busy", "false");
+    $(".available_toggle_on").show();
+    $(".available_toggle_off").hide();
+  } else {
+
+    $.post(update_doctor_status_url,
+    {
+    "phone_no": getCookie("phone_no"),
+    "busy": "true"
+    },
+    function(data, status){
+        // alert(JSON.stringify(data));
+    });
+
+    setCookie("busy", "true");
+    $(".available_toggle_on").hide();
+    $(".available_toggle_off").show();
+  }
 });
 
 $(".sos_btn").click(function() {
@@ -101,16 +143,22 @@ String.prototype.format = function () {
         return a
     }
 
-// var base_url = "http://127.0.0.1:8000/";
+var base_url = "http://127.0.0.1:8000/";
 // var base_url = "http://192.168.43.156:8000/";
-var base_url = "http://3.21.187.90:8000/";
+// var base_url = "http://3.21.187.90:8000/";
 
 var user_sign_in_url = base_url + "user/login/";
 var user_register_url = base_url + "user/register/";
 var user_update_url = base_url + "user/update/";
+var user_update_pic_url = base_url + "user/update_pic/";
+
+var update_doctor_status_url = base_url + "user/update_doctor_status/";
 
 var user_send_otp_url = base_url + "user/send_otp/";
 var user_get_otp_url = base_url + "user/get_otp/";
+var user_forgot_url = base_url + "user/forgot/";
+
+var counsellor_feedback_url = base_url + "user/feedback/";
 
 var video_get_url = base_url + "video/all/";
 var video_upload_url = base_url + "video/upload/";
@@ -200,58 +248,78 @@ $(document).ready(function(){
   if(url == 'wallet.html') {
     var footer = `
           <div>
-              <a class="active" onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
-              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
-              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
-              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
-              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+              <a class="active" onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i><p>Wallet</p></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i><p>Library</p></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i><p>health</p></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i><p>History</p></a>
+              <a onclick="window.location = 'more.html'" href="#"><i class="fa fa-bars navbar_btn"></i><p>More</p></a>
           </div>`
 
     $(".footer").html(footer);
   } else if(url == 'video.html') {
     var footer = `
           <div>
-              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
-              <a class="active" onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
-              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
-              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
-              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i><p>Wallet</p></a>
+              <a class="active" onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i><p>Library</p></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i><p>health</p></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i><p>History</p></a>
+              <a onclick="window.location = 'more.html'" href="#"><i class="fa fa-bars navbar_btn"></i><p>More</p></a>
           </div>`
 
     $(".footer").html(footer);
   } else if(url == 'counsellor.html') {
     var footer = `
           <div>
-              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
-              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
-              <a class="active" onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
-              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
-              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i><p>Wallet</p></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i><p>Library</p></a>
+              <a class="active" onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i><p>health</p></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i><p>History</p></a>
+              <a onclick="window.location = 'more.html'" href="#"><i class="fa fa-bars navbar_btn"></i><p>More</p></a>
           </div>`
 
     $(".footer").html(footer);
   } else if(url == 'view_history.html') {
     var footer = `
           <div>
-              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
-              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
-              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
-              <a class="active" onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
-              <a onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i><p>Wallet</p></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i><p>Library</p></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i><p>health</p></a>
+              <a class="active" onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i><p>History</p></a>
+              <a onclick="window.location = 'more.html'" href="#"><i class="fa fa-bars navbar_btn"></i><p>More</p></a>
           </div>`
 
     $(".footer").html(footer);
-  } else if(url == 'profile.html') {
+  } else if(url == 'more.html') {
     var footer = `
           <div>
-              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i></a>
-              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i></a>
-              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i></a>
-              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i></a>
-              <a class="active" onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i></a>
+              <a onclick="window.location = 'wallet.html'" href="#"><i class="fa fa-credit-card navbar_btn"></i><p>Wallet</p></a>
+              <a onclick="window.location = 'video.html'" href="#"><i class="fa fa-book navbar_btn"></i><p>Library</p></a>
+              <a onclick="window.location = 'counsellor.html'" href="#"><i class="fa fa-heart navbar_btn"></i><p>health</p></a>
+              <a onclick="window.location = 'view_history.html'" href="#"><i class="fa fa-history navbar_btn"></i><p>History</p></a>
+              <a class="active" onclick="window.location = 'profile.html'" href="#"><i class="fa fa-user navbar_btn"></i><p>More</p></a>
           </div>`
 
     $(".footer").html(footer);
+  } else {
+    $(".footer").hide();
+    var temp_busy = getCookie("busy");
+
+    $.post(update_doctor_status_url,
+    {
+    "phone_no": getCookie("phone_no"),
+    "busy": temp_busy
+    },
+    function(data, status){
+        // alert(JSON.stringify(data));
+    });
+
+    if(temp_busy == "false") {
+      $(".available_toggle_on").show();
+      $(".available_toggle_off").hide();
+    } else {
+      $(".available_toggle_on").hide();
+      $(".available_toggle_off").show();
+    }
   }
 
   

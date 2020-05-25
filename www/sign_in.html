@@ -117,6 +117,7 @@
                     <input type="text" name="phone_in" id="phone_in" placeholder="Phone No. : 9999999999" class="sign_in_input">
                     <input type="password" name="password_in" id="password_in" placeholder="Password" class="sign_in_input">
                 </div>
+                <center><a href="#" onclick="forgot_password();">Forgot Password ?</a></center>
                 <div class="profile_btn sign_in_button">Sign In</div>
                 <center><p>OR</p></center>
                 <div class="profile_btn register_button">Register</div>
@@ -132,12 +133,88 @@
         function reload(){
             if(getCookie("phone_no") != "") {
                 // window.location = 'profile.html';
-                window.location = 'counsellor.html';
+                if(getCookie("doctor") == "true"){
+                    window.location = 'home_doctor.html';    
+                } else {
+                    window.location = 'counsellor.html';
+                }
+            }
+        }
+
+        function forgot_password(){
+
+            var temp_phone = prompt("Please enter your phone no", "");
+
+            if (temp_phone == null || temp_phone == "") {
+              alert("Invalid phone no");
+            } else {
+                $.post(user_send_otp_url,
+                {
+                "phone_no": temp_phone
+                },
+                function(data, status){
+                    if(data["status"] != "Failed"){
+                        var temp_otp = prompt("Please enter the otp sent to phone no", "");
+
+                        $.post(user_get_otp_url,
+                        {
+                        "phone_no": temp_phone
+                        },
+                        function(data, status){
+                            if(data["status"] != "Failed"){
+                                var get_otp_1 = data["otp"];
+
+                                if(temp_otp == get_otp_1){
+
+                                    var temp_pass = prompt("Please enter new password", "");
+
+                                    var temp_pass2 = prompt("Confirm new password", "");
+
+                                    if(temp_pass != temp_pass2){
+                                        alert("Password Don't Match");
+                                        return;
+                                    }
+
+                                    $.post(user_forgot_url,
+                                    {
+                                    "phone_no": temp_phone,
+                                    "password": temp_pass,
+                                    },
+                                    function(data, status){
+                                        if(data["status"] != "Failed"){
+                                            alert("Password Change Successfull");
+                                            window.location = 'sign_in.html';  
+                                        } else {
+                                            alert(data["response"]);
+                                        }
+                                    });
+                                } else {
+                                    alert("Wrong OTP");
+                                }
+
+                            } else {
+                                alert("Server Error");
+                            }
+                        });
+
+                    } else {
+                        alert("Server Error");
+                    }
+                });
             }
         }
 
         $(document).ready(function() {
-
+            if(getCookie("phone_no") != "") {
+                // window.location = 'sign_in.html';
+                alert("You are already signed in");
+                if(getCookie("doctor") == "true"){
+                    window.location = 'profile_doctor.html';    
+                } else {
+                    window.location = 'profile.html';
+                }
+                
+            }
         });
         $(".sign_in_button").click(function() {
             var temp_phone = $("#phone_in").val();
@@ -149,6 +226,8 @@
             "password": temp_pass
             },
             function(data, status){
+                // alert(JSON.stringify(data["user_doctor"]))
+                // alert(JSON.stringify(data["user_doctor"][0]["busy"]))
                 if(data["status"] != "Failed"){
                     setCookie("phone_no", data["phone_no"], 30);
                     setCookie("name", data["name"], 30);
@@ -157,8 +236,10 @@
                     setCookie("profession", data["profession"], 30);
                     setCookie("wallet", data["wallet"], 30);
                     setCookie("address", data["address"], 30);
+                    setCookie("pic", data["pic"], 30);
                     if(data["doctor"] == true){
-                        setCookie("doctor", "true", 30);    
+                        setCookie("doctor", "true", 30);   
+                        setCookie("busy", data["user_doctor"][0]["busy"], 30);    
                     } else {
                         setCookie("doctor", "false", 30);    
                     }

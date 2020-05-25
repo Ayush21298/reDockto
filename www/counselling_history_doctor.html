@@ -193,7 +193,7 @@
                         </table>
                     </div>
                     <div>
-                        <div class="call_handler call_connect" onclick='setCookie("user_phone_call",${data[i]["user_phone_no"]}); setCookie("doctor_phone_call",getCookie("phone_no")); setCookie("call_id",${data[i]["id"]}); window.location = "agora_doctor.html"'>Connect</div>
+                        <div class="call_handler call_connect" onclick='setCookie("user_phone_call",${data[i]["user_phone_no"]}); setCookie("doctor_phone_call",getCookie("phone_no")); setCookie("call_id",${data[i]["id"]}); setCookie("call_type",${data[i]["call_type"]}); window.location = "agora_doctor.html"'>Connect</div>
                         <div class="call_handler call_ignore" onclick='setCookie("call_id",${data[i]["id"]}); ignore_call()'>Ignore</div>
                     </div>
                 </div>`;

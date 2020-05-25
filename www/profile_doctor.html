@@ -117,7 +117,20 @@
         <div class="main_content">
             <div class="profile_container">
                 <div class="profile_image_container">
-                    <img src="img/profile.png">
+                    <img id="profileImage" src="img/profile.png">
+                    <i class="fa fa-pencil" style="position: absolute; top: 2rem; right: 2rem; font-size: 2rem; padding: 1rem; background-color: white; border-radius: 50%; box-shadow: grey 1px 1px 1px 1px; opacity: 0.8;"></i>
+                    <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                    <style type="text/css">
+                        #imageUpload
+                        {
+                            display: none;
+                        }
+
+                        #profileImage
+                        {
+                            cursor: pointer;
+                        }
+                    </style>
                 </div>
                 <div class="profile_information">
                     <input type="text" name="name" id="name" placeholder="Full Name" class="profile_input">
@@ -138,6 +151,43 @@
     </div>
 
     <script type="text/javascript">
+
+        $("#profileImage").on("error", function () {
+            $(this).attr("src", "img/profile.png");
+        });
+
+        $("#profileImage").click(function(e) {
+            $("#imageUpload").click();
+        });
+
+        $("#imageUpload").change(function(){
+            // previewProfileImage( this );
+            fasterPreview( this );
+        });
+
+        function fasterPreview( uploader ) {
+            if ( uploader.files && uploader.files[0] ){
+                  $('#profileImage').attr('src', 
+                    window.URL.createObjectURL(uploader.files[0]) );
+
+                    var formData = new FormData();
+                    formData.append('pic', uploader.files[0]);
+                    formData.append('phone_no', getCookie("phone_no"));
+
+                    $.ajax({
+                       url : user_update_pic_url,
+                       type : 'POST',
+                       data : formData,
+                       processData: false,  // tell jQuery not to process the data
+                       contentType: false,  // tell jQuery not to set contentType
+                       success : function(data) {
+                           alert(JSON.stringify(data));
+                           setCookie("pic", data["pic"]);
+                       }
+                    });
+            }
+        }
+
         function reload(){
             if(getCookie("phone_no") == "") {
                 window.location = 'sign_in.html';
@@ -148,6 +198,17 @@
                 // $("#dob").val("DOB : "+getCookie("dob"));
                 $("#profession").val("Profession : "+getCookie("profession"));
                 $("#wallet").val("Wallet Balance : ₹ "+getCookie("wallet"));
+
+                if(getCookie("pic") != ""){
+                    if(getCookie("pic").split("/")[0] == "static"){
+                        $('#profileImage').attr('src', base_url+getCookie("pic"));    
+                    } else {
+                        $('#profileImage').attr('src', getCookie("pic"));
+                    }
+                    
+                }
+
+
             }
         }
 
