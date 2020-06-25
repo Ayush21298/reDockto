@@ -90,7 +90,7 @@
         <div data-role="header" class="header">
             <center>
                 <div class="goto_home">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-arrow-left"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
                 <div class="available_toggle available_toggle_on">
@@ -119,46 +119,12 @@
 
             <center><h3>Patient List</h3></center>
 
-            <div class="history_container" style="max-height: 60vh; overflow-y: scroll;">
-                <div class="patient">
+            <div class="history_container" id="pat_list_1" style="max-height: 60vh; overflow-y: scroll;">
+                <!-- <div class="patient">
                     <b>Name</b> : Patient 1<br>
                     <b>Patient ID</b> : PAT001<br>
                 </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
-                <hr>
-                <div class="patient">
-                    <b>Name</b> : Patient 1<br>
-                    <b>Patient ID</b> : PAT001<br>
-                </div>
+                <hr> -->
             </div>
             
             <div class="history_container">
@@ -171,7 +137,7 @@
                     </div>
                     <hr> -->
                 </div>
-                <div class="profile_btn doctopad_button" onclick="alert('Patient Added Succesfully !')">Add</div>
+                <div class="profile_btn doctopad_button" onclick="add_patient()">Add</div>
             </div>
 
         </div>
@@ -185,20 +151,55 @@
             }
         }
 
+        function add_patient(){
+
+            $.post(patient_add_url,
+                {
+                    'name' : $("#Patient_Name").val(),
+                    'patient_id' : $("#Patient_ID").val(),
+                    'gender' : $("#Gender").val(),
+                    'dob' : $("#Date_of_Birth").val(),
+                    'doj' : $("#Date_of_Joining").val(),
+                    'nominee_name' : $("#Nominee_Name").val(),
+                    'nominee_id' : $("#Nominee_ID").val(),
+                    'nominee_gender' : $("#Gender_of_Nominee").val(),
+                    'nominee_dob' : $("#Date_of_Birth_of_Nominee").val(),
+                    'address' : $("#Address").val(),
+                    'phone_no' : getCookie('phone_no')
+                },
+                function(data, status){
+                    alert('Patient Added Succesfully !');
+                    location.reload();
+                })
+        }
+
         $(document).ready(function() {
             reload();
 
+            $.get(patient_get_url,
+            {'phone_no': getCookie('phone_no')},
+            function(data, status){
+                var temp = '';
+                for (var i = 0; i < data.length ; i++) {
+                    temp = temp + `<div class="patient">
+                                    <b>Name</b> : ${data[i]['name']}<br>
+                                    <b>Patient ID</b> : ${data[i]['patient_id']}<br>
+                                </div>
+                                <hr>`;
+                }
+                $("#pat_list_1").html(temp);
+            });
+
             var fields = [ 
-                            ["Patient Name", "text"],
-                            ["Patient ID", "text"],
+                            ["Patient_Name", "text"],
+                            ["Patient_ID", "text"],
                             ["Gender", "text"],
-                            ["Date of Birth", "date"],
-                            ["Date of Joining", "date"],
-                            ["Patient ID", "text"],
-                            ["Nominee Name", "text"],
-                            ["Nominee ID", "text"],
-                            ["Gender (Nominee)", "text"],
-                            ["Date of Birth (Nominee)", "date"],
+                            ["Date_of_Birth", "date"],
+                            ["Date_of_Joining", "date"],
+                            ["Nominee_Name", "text"],
+                            ["Nominee_ID", "text"],
+                            ["Gender_of_Nominee", "text"],
+                            ["Date_of_Birth_of_Nominee", "date"],
                             ["Address", "text"],
                         ];
 

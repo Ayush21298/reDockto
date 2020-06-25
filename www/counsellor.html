@@ -90,7 +90,7 @@
         <div data-role="header" class="header">
             <center>
                 <div class="goto_home">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-arrow-left"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
                 <div class="sos_btn">
@@ -117,14 +117,14 @@
               <!-- <h2>Carousel Example</h2>   -->
               <div id="myCarousel" class="carousel slide"  data-ride="carousel">
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators" id="carousel-indicators_1">
                   <li data-target="#myCarousel" style="background-color: black" data-slide-to="0" class="active"></li>
                   <li data-target="#myCarousel" style="background-color: black" data-slide-to="1"></li>
                   <li data-target="#myCarousel" style="background-color: black" data-slide-to="2"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="carousel-inner_1">
                   <div class="item active">
                     <img style="width: 80vw;
                      height: 25vh !important;" src="img/slide_1.jpeg" alt="Los Angeles" class="carousel-img" style="size: contain;">
@@ -155,28 +155,38 @@
             </div>
 
             <center>
-                <label for="availibility_sel">Availibility</label>
-                <select id="availibility_sel" class="sign_in_input">
-                  <option value="all" selected>All</option>
-                  <option value="available">Available Now</option>
-                </select> 
+                <table>
+                    <tr>
+                        <td style="width: 40vw; overflow-x: hidden;">
+                            <label for="availibility_sel">Availibility</label>
+                            <select id="availibility_sel" class="sign_in_input">
+                              <option value="all" selected>All</option>
+                              <option value="available">Available Now</option>
+                            </select> 
+                        </td>
+                        <td style="width: 40vw; overflow-x: hidden;">
+                            <label for="tag_sel">Tags</label>
+                            <select id="tag_sel" class="sign_in_input">
+                              <option value="all" selected>All</option>
+                              <option value="tag1">tag1</option>
+                              <option value="tag2">tag2</option>
+                              <option value="tag3">tag3</option>
+                              <option value="tag4">tag4</option>
+                              <option value="tag5">tag5</option>
+                              <option value="tag6">tag6</option>
+                              <option value="tag7">tag7</option>
+                              <option value="tag8">tag8</option>
+                              <option value="tag9">tag9</option>
+                              <option value="tag10">tag10</option>
+                            </select> 
+                        </td>
+                    </tr>
+                </table>
+                
 
-                <br>
+                <!-- <br> -->
 
-                <label for="tag_sel">Tags</label>
-                <select id="tag_sel" class="sign_in_input">
-                  <option value="all" selected>All</option>
-                  <option value="tag1">tag1</option>
-                  <option value="tag2">tag2</option>
-                  <option value="tag3">tag3</option>
-                  <option value="tag4">tag4</option>
-                  <option value="tag5">tag5</option>
-                  <option value="tag6">tag6</option>
-                  <option value="tag7">tag7</option>
-                  <option value="tag8">tag8</option>
-                  <option value="tag9">tag9</option>
-                  <option value="tag10">tag10</option>
-                </select> 
+                
 
                 <br>
 
@@ -187,60 +197,7 @@
             <center><h4>Counsellors</h4></center>
 
             <div id="main_content_counsellor">
-            
-            <!-- <div class="counsellor_container">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                    <div class="availibility">
-                        <div class="available"></div>
-                        Available
-                    </div>
-                    <div class="call_btn">
-                        <i class="fa fa-phone" onclick="alert('Will be integrated after backend !'); window.location='counsellor_feedback.html';"> Call Now</i>
-                    </div>
-                </div>
-                <div class="counsellor_info">
-                    <h4>Mr/s. Counsellor 1</h4>
-                    <b>Location</b> : Gurgaon<br>
-                    <b>Eligibility</b> : Psychologist<br>
-                    <b>Experience</b> : 10 yrs (240 patients)<br>
-                    <b>Rate (per hr.)</b> : ₹ 999.00<br>
-                </div>
-            </div> -->
 
-            <!-- <div class="counsellor_container">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                    <div class="availibility">
-                        <div class="busy"></div>
-                        Busy
-                    </div>
-                </div>
-                <div class="counsellor_info">
-                    <h4>Mr/s. Counsellor 2</h4>
-                    <b>Location</b> : Delhi<br>
-                    <b>Eligibility</b> : Psychologist<br>
-                    <b>Experience</b> : 10 yrs (240 patients)<br>
-                    <b>Rate (per hr.)</b> : ₹ 999.00<br>
-                </div>
-            </div>
-
-            <div class="counsellor_container">
-                <div class="counsellor_pic">
-                    <img src="img/profile.png">
-                    <div class="availibility">
-                        <div class="queue"></div>
-                        In Queue
-                    </div>
-                </div>
-                <div class="counsellor_info">
-                    <h4>Mr/s. Counsellor 3</h4>
-                    <b>Location</b> : Noida<br>
-                    <b>Eligibility</b> : Psychologist<br>
-                    <b>Experience</b> : 10 yrs (240 patients)<br>
-                    <b>Rate (per hr.)</b> : ₹ 999.00<br>
-                </div>
-            </div> -->
             </div>
 
         </div>
@@ -391,7 +348,50 @@
         }
 
         $(document).ready(function() {
+            if(getCookie("phone_no") == "") {
+                window.location = 'sign_in.html';
+            }
+
+            $("#carousel-indicators_1").html("");
+            $("#carousel-inner_1").html("");
+
+            $.get(expert_opinion_get_url,
+            {},
+            function(data, status){
+                $("#carousel-indicators_1").html("");
+                $("#carousel-inner_1").html("");
+                for (var i = 0; i < data.length ; i++) {
+                    
+                  var temp1 = "";
+                  var temp2 = "";
+
+                  if(i==0) {
+
+                    temp1 = `<li data-target="#myCarousel"  style="background-color: black"  data-slide-to="${i}" class="active"></li>`;
+
+                    temp2 = `<div class="item active">
+                              <img style="width: 80vw; height: 25vh !important;" src="${data[i]["url"]}" alt="${data[i]["title"]}" class="carousel-img" style="size: contain;">
+                            </div>`;
+
+                  } else {
+
+                    temp1 = `<li data-target="#myCarousel"  style="background-color: black"  data-slide-to="${i}"></li>`;
+
+                    temp2 = `<div class="item">
+                              <img style="width: 80vw; height: 25vh !important;" src="${data[i]["url"]}" alt="${data[i]["title"]}" class="carousel-img" style="size: contain;">
+                            </div>`;
+
+                  }
+
+                  $("#carousel-indicators_1").html( $("#carousel-indicators_1").html() + temp1 );
+                  $("#carousel-inner_1").html( $("#carousel-inner_1").html() + temp2 );
+
+                }
+            });
+
             load_all();
+            $("#availibility_sel-button").width('100');
+            $("#tag_sel-button").width('100');
         });
     </script>
 

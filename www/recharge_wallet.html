@@ -90,7 +90,7 @@
         <div data-role="header" class="header">
             <center>
                 <div class="goto_home">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-arrow-left"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
                 <div class="sos_btn">
@@ -130,6 +130,10 @@
                 $(".recharge_in_button").click(function() {
 
                     var temp_amt_1 = parseFloat($("#recharge_amt_in").val());
+                    if(parseInt(temp_amt_1)<=0){
+                        alert("Please enter an amount greater that zero");
+                        return;
+                    }
                     var temp_amt = parseInt(temp_amt_1*100);
 
                     $.post(payment_create_url,

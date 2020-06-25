@@ -127,11 +127,16 @@ $(".sos_btn").click(function() {
 });
 
 $(".goto_home").click(function() {
-  $(".slide_window").animate({
-        width: "toggle",
-        opacity: "toggle",
-      }, "slow");
-  $(".slide_menu").toggle("slow");
+  // $(".slide_window").animate({
+  //       width: "toggle",
+  //       opacity: "toggle",
+  //     }, "slow");
+  // $(".slide_menu").toggle("slow");
+  window.history.back();
+});
+
+$(".brand_logo").click(function(){
+  window.location = 'home_main.html';
 });
 
 
@@ -143,9 +148,9 @@ String.prototype.format = function () {
         return a
     }
 
-// var base_url = "http://127.0.0.1:8000/";
+var base_url = "http://127.0.0.1:8000/";
 // var base_url = "http://192.168.43.156:8000/";
-var base_url = "http://3.21.187.90:8000/";
+// var base_url = "http://3.21.187.90:8000/";
 
 var user_sign_in_url = base_url + "user/login/";
 var user_register_url = base_url + "user/register/";
@@ -173,6 +178,9 @@ var expert_opinion_get_url = base_url + "expert_opinion/all/";
 var expert_opinion_upload_url = base_url + "expert_opinion/upload/";
 
 var doctor_get_url = base_url + "doctor/all/";
+
+var patient_get_url = base_url + "doctor/patient/";
+var patient_add_url = base_url + "doctor/patient_add/";
 
 var patient_history_url = base_url + "counselling/patient/";
 
@@ -209,7 +217,9 @@ function sign_out() {
   setCookie("profession", "", 30);
   setCookie("wallet", "", 30);
   setCookie("address", "", 30);
-  setCookie("doctor", "", 30);    
+  setCookie("doctor", "", 30);  
+  setCookie("admin", "", 30);   
+  window.location = 'home_main.html'; 
 }
 
 $(document).ready(function(){
@@ -326,7 +336,7 @@ $(document).ready(function(){
 
 });
 
-function footer_btn_back(argument) {
+function footer_btn_back() {
   // window.history.back();
   var url = (window.location.pathname).split('/')
   url = url[url.length-1];

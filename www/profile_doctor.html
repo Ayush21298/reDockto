@@ -90,7 +90,7 @@
         <div data-role="header" class="header">
             <center>
                 <div class="goto_home">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-arrow-left"></i>
                 </div>
                 <img src="img/logo.png" class="brand_logo">
                 <div class="available_toggle available_toggle_on">
@@ -118,7 +118,7 @@
             <div class="profile_container">
                 <div class="profile_image_container">
                     <img id="profileImage" src="img/profile.png">
-                    <i class="fa fa-pencil" style="position: absolute; top: 2rem; right: 2rem; font-size: 2rem; padding: 1rem; background-color: white; border-radius: 50%; box-shadow: grey 1px 1px 1px 1px; opacity: 0.8;"></i>
+                    <i id="profileImageEE" class="fa fa-pencil" style="position: absolute; top: 2rem; right: 2rem; font-size: 2rem; padding: 1rem; background-color: white; border-radius: 50%; box-shadow: grey 1px 1px 1px 1px; opacity: 0.8;"></i>
                     <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
                     <style type="text/css">
                         #imageUpload
@@ -126,7 +126,7 @@
                             display: none;
                         }
 
-                        #profileImage
+                        #profileImageEE
                         {
                             cursor: pointer;
                         }
@@ -156,7 +156,7 @@
             $(this).attr("src", "img/profile.png");
         });
 
-        $("#profileImage").click(function(e) {
+        $("#profileImageEE").click(function(e) {
             $("#imageUpload").click();
         });
 
@@ -269,8 +269,9 @@
             window.location = 'view_history.html';
         });
         $(".sign_out_button").click(function() {
-            setCookie("phone_no", "", 30);
-            reload();
+            sign_out()
+            // setCookie("phone_no", "", 30);
+            // reload();
         });
     </script>
 

@@ -3,6 +3,11 @@
   src: url("../fonts/Roboto-Regular.ttf");
 }
 
+@font-face {
+  font-family: poppins;
+  src: url("../fonts/pxiEyp8kv8JHgFVrJJbecmNE.woff2");
+}
+
 body {
 	text-transform: none;
 	text-shadow: none !important;
@@ -22,7 +27,8 @@ body {
     background-size: cover;*/
     text-transform: none;
 	text-shadow: none !important;
-	font-family: roboto !important;
+	/*font-family: roboto !important;*/
+	font-family: poppins !important;
 }
 
 .container {
@@ -216,6 +222,7 @@ body {
 .profile_btn {
 	box-shadow: grey 2px 2px 2px 2px;
 	/*display: inline-block;*/
+	border-radius: 1rem;
 	text-align: center;
 	margin: 2rem;
 	padding: 1rem;
@@ -391,6 +398,7 @@ body {
 	bottom: 1rem;
 	right: 1rem;
 	cursor: pointer;
+	font-size: 1.8rem;
 }
 
 .goto_home {
